@@ -1,11 +1,1341 @@
----
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MacSoft | Desarrollo de Software Empresarial</title>
+    <meta name="description" content="Expertos en desarrollo de software empresarial. Transformamos procesos con tecnología de vanguardia. +5 años de experiencia." />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Scripts -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.2.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.2.2/dist/ionicons/ionicons.js"></script>
+    
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #2563eb;
+            --accent-light: #3b82f6;
+            --accent-dark: #1d4ed8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --neutral-50: #f8fafc;
+            --neutral-100: #f1f5f9;
+            --neutral-200: #e2e8f0;
+            --neutral-300: #cbd5e1;
+            --neutral-400: #94a3b8;
+            --neutral-500: #64748b;
+            --neutral-600: #475569;
+            --neutral-700: #334155;
+            --neutral-800: #1e293b;
+            --neutral-900: #0f172a;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-accent: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --gradient-warm: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
----
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<Layout>
-	<Welcome />
-</Layout>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--neutral-700);
+            overflow-x: hidden;
+            background: var(--neutral-50);
+        }
+
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+        }
+
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Animation Classes */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in-down {
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+
+        .animate-slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .animate-slide-in-right {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        .animate-scale-in {
+            animation: scaleIn 0.8s ease-out forwards;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-rotate {
+            animation: rotate 20s linear infinite;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient-shift 4s ease infinite;
+        }
+
+        /* Stagger animations */
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(248, 250, 252, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(248, 250, 252, 0.98);
+            box-shadow: var(--shadow-md);
+            border-bottom-color: var(--neutral-200);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-link {
+            color: var(--neutral-600);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 12px 16px;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+            background: rgba(37, 99, 235, 0.08);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 60%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--neutral-50) 0%, #f1f5f9 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--neutral-600);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .gradient-text {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-accent);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--neutral-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            background: var(--neutral-50);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--neutral-200);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+            border-color: var(--accent);
+        }
+
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            filter: blur(20px);
+            opacity: 0.6;
+            transform: scale(1.2);
+        }
+
+        .card-icon ion-icon {
+            font-size: 32px;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Sections */
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--neutral-600);
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* Stats */
+        .stats-section {
+            background: var(--primary);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(37, 99, 235, 0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        .stats-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--accent-light);
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1;
+        }
+
+        .stats-label {
+            font-size: 0.875rem;
+            color: var(--neutral-300);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+
+        /* Testimonials */
+        .testimonial {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--neutral-200);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.3;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent);
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            color: var(--neutral-700);
+            margin-bottom: 24px;
+            font-size: 1.125rem;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .testimonial-info h4 {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .testimonial-info p {
+            color: var(--neutral-500);
+            font-size: 0.875rem;
+        }
+
+        /* Process Steps */
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin: 0 auto 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: var(--neutral-200);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .process-step:last-child::before {
+            display: none;
+        }
+
+        /* Contact Form */
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--neutral-200);
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-btn::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #25d366;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            z-index: -1;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(37, 99, 235, 0.1) 50%, transparent 70%);
+            animation: shimmer 4s infinite;
+        }
+
+        .footer-logo {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .footer-logo span {
+            color: var(--accent-light);
+        }
+
+        .footer-link {
+            color: var(--neutral-300);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
+            .card {
+                padding: 24px;
+            }
+
+            .process-step::before {
+                display: none;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .space-x-4 > * + * { margin-left: 1rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .hidden { display: none; }
+        .block { display: block; }
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .top-0 { top: 0; }
+        .left-0 { left: 0; }
+        .right-0 { right: 0; }
+        .bottom-0 { bottom: 0; }
+        .z-10 { z-index: 10; }
+        .z-20 { z-index: 20; }
+        .opacity-0 { opacity: 0; }
+        .opacity-100 { opacity: 1; }
+
+        @media (min-width: 768px) {
+            .md\:block { display: block; }
+            .md\:hidden { display: none; }
+            .md\:flex { display: flex; }
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
+
+        /* Intersection Observer for animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" x-data="{ open: false }">
+    <div class="container flex items-center justify-between">
+        <!-- Logo -->
+        <a href="/" class="logo">Mac<span>Soft</span></a>
+
+        <!-- Menú Escritorio -->
+        <div class="hidden md:flex space-x-6">
+        <a href="/servicio" class="nav-link">Servicios</a>
+        <a href="/equipo"   class="nav-link">Nuestro Equipo</a>
+        <a href="/procesos" class="nav-link">Procesos</a>
+        <a href="/acerca"   class="nav-link">Acerca de Nosotros</a>
+        <a href="/contacto" class="btn btn-primary">Contáctanos</a>
+        </div>
+
+        <!-- Botón Móvil -->
+        <button @click="open = !open" class="md:hidden p-2 rounded-lg hover:bg-gray-100">
+        <ion-icon :name="open ? 'close' : 'menu'" size="large"></ion-icon>
+        </button>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div x-show="open" x-transition class="md:hidden bg-white/90 backdrop-blur-md border-t border-gray-200">
+        <div class="py-4 space-y-2">
+        <a @click="open=false" href="/servicio" class="block nav-link">Servicios</a>
+        <a @click="open=false" href="/equipo"   class="block nav-link">Nuestro Equipo</a>
+        <a @click="open=false" href="/procesos" class="block nav-link">Procesos</a>
+        <a @click="open=false" href="/acerca"   class="block nav-link">Acerca de Nosotros</a>
+        <a @click="open=false" href="/contacto" class="block btn btn-primary w-full text-center">Contáctanos</a>
+        </div>
+    </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title animate-fade-in-up">
+                    Transformamos Ideas en<br>
+                    <span class="gradient-text">Soluciones Digitales</span>
+                </h1>
+                
+                <p class="hero-subtitle animate-fade-in-up stagger-1">
+                    Somos una empresa emergente especializada en desarrollo de software empresarial. Con un equipo de expertos, creamos soluciones digitales robustas que impulsan el crecimiento de tu negocio.
+                </p>
+                
+                <div class="flex space-x-4 animate-fade-in-up stagger-2">
+                    <a href="#contacto" class="btn btn-primary">
+                        <ion-icon name="rocket-outline" style="margin-right: 8px;"></ion-icon>
+                        Consulta Gratuita
+                    </a>
+                    <a href="#casos" class="btn btn-secondary">
+                        <ion-icon name="eye-outline" style="margin-right: 8px;"></ion-icon>
+                        Ver Casos de Éxito
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Servicios Section -->
+<section id="servicios" class="section">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">
+            Servicios <span class="gradient-text">Especializados</span>
+        </h2>
+        <p class="section-subtitle animate-on-scroll">
+            Ofrecemos soluciones tecnológicas integrales respaldadas por más de 5 años de experiencia en desarrollo empresarial. Cada proyecto es único y merece una atención personalizada.
+        </p>
+        
+        <div class="grid grid-3">
+            <div class="card animate-on-scroll stagger-1">
+                <div class="card-icon" style="background: var(--gradient-accent);">
+                    <ion-icon name="code-slash-outline"></ion-icon>
+                </div>
+                <h3 class="mb-4" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">Desarrollo Web Avanzado</h3>
+                <p class="mb-6" style="color: var(--neutral-600); line-height: 1.7;">
+                    Creamos aplicaciones web modernas y responsivas utilizando las últimas tecnologías. React, Vue, Angular, Node.js y bases de datos robustas para garantizar escalabilidad y rendimiento óptimo.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">React</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Node.js</span>
+                    <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">MongoDB</span>
+                </div>
+            </div>
+            
+            <div class="card animate-on-scroll stagger-2">
+                <div class="card-icon" style="background: var(--gradient-success);">
+                    <ion-icon name="phone-portrait-outline"></ion-icon>
+                </div>
+                <h3 class="mb-4" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">Aplicaciones Móviles</h3>
+                <p class="mb-6" style="color: var(--neutral-600); line-height: 1.7;">
+                    Desarrollamos apps nativas e híbridas que destacan en App Store y Google Play. Experiencia de usuario excepcional con interfaces intuitivas y funcionalidades avanzadas.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">React Native</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Flutter</span>
+                    <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">Swift</span>
+                </div>
+            </div>
+            
+            <div class="card animate-on-scroll stagger-3">
+                <div class="card-icon" style="background: var(--gradient-warm);">
+                    <ion-icon name="server-outline"></ion-icon>
+                </div>
+                <h3 class="mb-4" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">Arquitectura Backend</h3>
+                <p class="mb-6" style="color: var(--neutral-600); line-height: 1.7;">
+                    Construimos APIs robustas y microservicios escalables. Implementamos las mejores prácticas de seguridad, optimización de bases de datos y arquitectura en la nube.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Python</span>
+                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">AWS</span>
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Docker</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experiencia Section -->
+<section id="experiencia" class="stats-section">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll" style="color: white; margin-bottom: 3rem;">
+            Experiencia que <span class="gradient-text">Respalda Resultados</span>
+        </h2>
+        
+        <div class="grid grid-4">
+            <div class="text-center animate-on-scroll stagger-1">
+                <div class="stats-number animate-pulse">5+</div>
+                <div class="stats-label">Años de Experiencia</div>
+            </div>
+            
+            <div class="text-center animate-on-scroll stagger-2">
+                <div class="stats-number animate-pulse">50+</div>
+                <div class="stats-label">Proyectos Completados</div>
+            </div>
+            
+            <div class="text-center animate-on-scroll stagger-3">
+                <div class="stats-number animate-pulse">98%</div>
+                <div class="stats-label">Satisfacción del Cliente</div>
+            </div>
+            
+            <div class="text-center animate-on-scroll stagger-4">
+                <div class="stats-number animate-pulse">24/7</div>
+                <div class="stats-label">Soporte Técnico</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Proceso Section -->
+<section class="section" style="background: var(--neutral-100);">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">
+            Nuestro <span class="gradient-text">Proceso Probado</span>
+        </h2>
+        <p class="section-subtitle animate-on-scroll">
+            Metodología ágil y transparente que garantiza resultados excepcionales en cada etapa del proyecto.
+        </p>
+        
+        <div class="grid grid-4">
+            <div class="process-step animate-on-scroll stagger-1">
+                <div class="process-number">1</div>
+                <h3 class="mb-4" style="font-size: 1.25rem; font-weight: 700; color: var(--primary);">Análisis y Consultoría</h3>
+                <p style="color: var(--neutral-600); line-height: 1.7;">
+                    Entendemos profundamente tu negocio, identificamos oportunidades de mejora y definimos objetivos claros para el proyecto.
+                </p>
+            </div>
+            
+            <div class="process-step animate-on-scroll stagger-2">
+                <div class="process-number">2</div>
+                <h3 class="mb-4" style="font-size: 1.25rem; font-weight: 700; color: var(--primary);">Diseño y Prototipado</h3>
+                <p style="color: var(--neutral-600); line-height: 1.7;">
+                    Creamos mockups interactivos y prototipos funcionales para validar la experiencia de usuario antes del desarrollo.
+                </p>
+            </div>
+            
+            <div class="process-step animate-on-scroll stagger-3">
+                <div class="process-number">3</div>
+                <h3 class="mb-4" style="font-size: 1.25rem; font-weight: 700; color: var(--primary);">Desarrollo Ágil</h3>
+                <p style="color: var(--neutral-600); line-height: 1.7;">
+                    Implementamos la solución con metodologías ágiles, entregas iterativas y comunicación constante contigo.
+                </p>
+            </div>
+            
+            <div class="process-step animate-on-scroll stagger-4">
+                <div class="process-number">4</div>
+                <h3 class="mb-4" style="font-size: 1.25rem; font-weight: 700; color: var(--primary);">Soporte Continuo</h3>
+                <p style="color: var(--neutral-600); line-height: 1.7;">
+                    Brindamos mantenimiento, actualizaciones y soporte técnico especializado para garantizar el éxito a largo plazo.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Casos de Éxito Section -->
+<section id="casos" class="section">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">
+            Casos de <span class="gradient-text">Éxito Comprobados</span>
+        </h2>
+        <p class="section-subtitle animate-on-scroll">
+            Testimonios reales de clientes que han transformado sus negocios con nuestras soluciones tecnológicas.
+        </p>
+        
+        <div class="grid grid-2">
+            <div class="testimonial animate-on-scroll stagger-1">
+                <div class="testimonial-content">
+                    MacSoft transformó completamente nuestro sistema de gestión. La aplicación web que desarrollaron aumentó nuestra productividad en un 40% y redujo errores operacionales significativamente.
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">CA</div>
+                    <div class="testimonial-info">
+                        <h4>Carlos Mendoza</h4>
+                        <p>CEO, Logística Integral SAC</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial animate-on-scroll stagger-2">
+                <div class="testimonial-content">
+                    El equipo de MacSoft no solo cumplió con nuestras expectativas, las superó. Su experiencia en desarrollo móvil nos permitió lanzar nuestra app en tiempo record con una calidad excepcional.
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">MR</div>
+                    <div class="testimonial-info">
+                        <h4>María Rodriguez</h4>
+                        <p>Directora de Innovación, RetailTech</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial animate-on-scroll stagger-3">
+                <div class="testimonial-content">
+                    La arquitectura backend que implementaron es robusta y escalable. Hemos crecido 300% en usuarios sin problemas de rendimiento. Altamente recomendados.
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">JS</div>
+                    <div class="testimonial-info">
+                        <h4>José Silva</h4>
+                        <p>CTO, FinTech Solutions</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial animate-on-scroll stagger-4">
+                <div class="testimonial-content">
+                    MacSoft nos brindó una solución integral que modernizó nuestros procesos. Su enfoque en UX/UI hizo que nuestros empleados adoptaran la nueva plataforma rápidamente.
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">AL</div>
+                    <div class="testimonial-info">
+                        <h4>Ana López</h4>
+                        <p>Gerente General, Constructora Lima</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contacto Section -->
+<section id="contacto" class="section" style="background: var(--neutral-100);">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">
+            ¿Listo para <span class="gradient-text">Transformar tu Negocio?</span>
+        </h2>
+        <p class="section-subtitle animate-on-scroll">
+            Contáctanos para una consultoría gratuita. Evaluaremos tu proyecto y te propondremos la mejor solución tecnológica.
+        </p>
+        
+        <div class="grid grid-2" style="gap: 4rem;">
+            <div class="animate-on-scroll stagger-1">
+                <h3 class="mb-6" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">Información de Contacto</h3>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+                            <ion-icon name="mail-outline" style="color: white; font-size: 1.5rem;"></ion-icon>
+                        </div>
+                        <div>
+                            <h4 style="font-weight: 600; color: var(--primary);">Email</h4>
+                            <p style="color: var(--neutral-600);">contacto@macsoft.pe</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center">
+                            <ion-icon name="call-outline" style="color: white; font-size: 1.5rem;"></ion-icon>
+                        </div>
+                        <div>
+                            <h4 style="font-weight: 600; color: var(--primary);">Teléfono</h4>
+                            <p style="color: var(--neutral-600);">+51 936 313 648</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center">
+                            <ion-icon name="location-outline" style="color: white; font-size: 1.5rem;"></ion-icon>
+                        </div>
+                        <div>
+                            <h4 style="font-weight: 600; color: var(--primary);">Ubicación</h4>
+                            <p style="color: var(--neutral-600);">Chiclayo, Lambayeque, Perú</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="animate-on-scroll stagger-2">
+                <form class="space-y-6" style="background: white; padding: 2rem; border-radius: 16px; box-shadow: var(--shadow-lg);">
+                    <h3 class="mb-6" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">Solicita tu Consultoría Gratuita</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Nombre Completo</label>
+                        <input type="text" class="form-input" placeholder="Tu nombre completo" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email Corporativo</label>
+                        <input type="email" class="form-input" placeholder="tu@empresa.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Empresa</label>
+                        <input type="text" class="form-input" placeholder="Nombre de tu empresa" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Tipo de Proyecto</label>
+                        <select class="form-input" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="web">Aplicación Web</option>
+                            <option value="mobile">Aplicación Móvil</option>
+                            <option value="backend">Sistema Backend</option>
+                            <option value="integral">Solución Integral</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Cuéntanos sobre tu proyecto</label>
+                        <textarea class="form-input form-textarea" placeholder="Describe brevemente tu proyecto, objetivos y necesidades..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-full">
+                        <ion-icon name="send-outline" style="margin-right: 8px;"></ion-icon>
+                        Enviar Consulta
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="grid grid-4" style="margin-bottom: 2rem;">
+            <div class="animate-on-scroll stagger-1">
+                <h3 class="footer-logo mb-4">Mac<span>Soft</span></h3>
+                <p style="color: var(--neutral-300); line-height: 1.7; margin-bottom: 1.5rem;">
+                    Transformamos ideas en soluciones digitales innovadoras. Más de 5 años creando experiencias excepcionales.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                        <ion-icon name="logo-linkedin" style="color: white;"></ion-icon>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                        <ion-icon name="logo-twitter" style="color: white;"></ion-icon>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gradient-to-r from-gray-700 to-gray-800 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                        <ion-icon name="logo-github" style="color: white;"></ion-icon>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="animate-on-scroll stagger-2">
+                <h4 style="color: white; font-weight: 600; margin-bottom: 1rem;">Servicios</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="footer-link">Desarrollo Web</a></li>
+                    <li><a href="#" class="footer-link">Aplicaciones Móviles</a></li>
+                    <li><a href="#" class="footer-link">Arquitectura Backend</a></li>
+                    <li><a href="#" class="footer-link">Consultoría Técnica</a></li>
+                </ul>
+            </div>
+            
+            <div class="animate-on-scroll stagger-3">
+                <h4 style="color: white; font-weight: 600; margin-bottom: 1rem;">Empresa</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="footer-link">Acerca de Nosotros</a></li>
+                    <li><a href="#" class="footer-link">Nuestro Equipo</a></li>
+                    <li><a href="#" class="footer-link">Casos de Éxito</a></li>
+                    <li><a href="#" class="footer-link">Blog Técnico</a></li>
+                </ul>
+            </div>
+            
+            <div class="animate-on-scroll stagger-4">
+                <h4 style="color: white; font-weight: 600; margin-bottom: 1rem;">Contacto</h4>
+                <ul class="space-y-3">
+                    <li class="footer-link">Chiclayo, Lambayeque, Perú</li>
+                    <li class="footer-link">+51 936 313 648</li>
+                    <li><a href="mailto:contacto@macsoft.pe" class="footer-link">contacto@macsoft.pe</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="border-top: 1px solid var(--neutral-700); padding-top: 2rem; text-align: center;">
+            <p style="color: var(--neutral-400);">
+                © 2025 MacSoft. Todos los derechos reservados. Desarrollado con ❤️ en Chiclayo, Lambayeque, Perú.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/51936313648" class="whatsapp-btn" target="_blank" title="Contáctanos por WhatsApp">
+    <ion-icon name="logo-whatsapp" style="color: white; font-size: 1.5rem;"></ion-icon>
+</a>
+
+<!-- JavaScript for Scroll Animations -->
+<script>
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, observerOptions);
+
+    // Observe all elements with animate-on-scroll class
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
+            if (href) {
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+
+    // Form submission handler
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple form validation and submission logic
+            const formData = new FormData(this);
+            const submitBtn = this.querySelector('button[type="submit"]');
+            if (!submitBtn) return;
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<ion-icon name="hourglass-outline" style="margin-right: 8px;"></ion-icon>Enviando...';
+            (submitBtn as HTMLButtonElement).disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitBtn.innerHTML = '<ion-icon name="checkmark-outline" style="margin-right: 8px;"></ion-icon>¡Enviado!';
+                (submitBtn as HTMLElement).style.background = 'var(--gradient-success)';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    (submitBtn as HTMLButtonElement).disabled = false;
+                    (submitBtn as HTMLElement).style.background = 'var(--gradient-accent)';
+                    this.reset();
+                }, 2000);
+            }, 1500);
+        });
+    }
+</script>
+
+</body>
+</html>

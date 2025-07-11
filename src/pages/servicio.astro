@@ -1,0 +1,230 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Nuestros Servicios | MacSoft"
+  description="Desarrollo web, móvil, backend, UX y más. Creamos software a la medida para cualquier empresa."
+>
+  <!-- –––––––––––––––––––  ESTILOS  ––––––––––––––––––– -->
+  <style>
+    /* Animaciones */
+    @keyframes bounceGentle{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes pulseScale{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+    @keyframes popIn{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+
+    /* Utilidades */
+    .animate-on-scroll{opacity:0;transform:translateY(30px);transition:.6s ease}
+    .animate-on-scroll.in{opacity:1;transform:translateY(0)}
+    .btn-primary{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:56px;                                /* <-- mismo alto */
+      padding:0 2rem;border-radius:9999px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-light));
+      color:#fff;font-weight:800;font-size:1.1rem;white-space:nowrap;
+      box-shadow:0 8px 25px rgba(6,182,212,.4);
+      animation:pulseScale 2s ease-in-out infinite;
+      transition:transform .3s, box-shadow .3s;
+    }
+    .btn-primary:hover{animation:none;transform:translateY(-2px);box-shadow:0 12px 30px rgba(6,182,212,.6)}
+
+    /* Icono + burbuja */
+    .floating-cta{
+      position:fixed;bottom:1.5rem;right:1.5rem;z-index:1000;
+      width:56px;height:56px;border-radius:50%;background:var(--accent);
+      display:flex;justify-content:center;align-items:center;
+      box-shadow:0 4px 20px rgba(6,182,212,.4);
+      cursor:pointer;animation:bounceGentle 2s ease infinite;
+    }
+    .cta-bubble{
+      position:fixed;bottom:6rem;right:6rem;z-index:999;
+      background:#fff;color:var(--primary);font-weight:600;
+      padding:.75rem 1.25rem;border-radius:1.5rem;pointer-events:none;
+      box-shadow:0 4px 15px rgba(0,0,0,.1);opacity:0;
+      animation:popIn .5s ease 2s forwards;
+    }
+    .cta-bubble::after{
+      content:'';position:absolute;bottom:-10px;right:1rem;
+      border:10px solid transparent;border-top-color:#fff;
+    }
+
+    /* Grid y tarjetas */
+    .service-grid{
+      display:grid;gap:2rem;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      grid-auto-rows:1fr;                       /* <-- filas igualadas   */
+    }
+    .tiltable{height:100%}                      /* wrapper igual de alto */
+    .service-card{
+      position:relative;height:100%;            /* tarjeta 100 %         */
+      background:#fff;border-radius:1rem;padding:2rem;
+      box-shadow:0 4px 15px rgba(0,0,0,.05);
+      display:flex;flex-direction:column;
+      transition:transform .3s, box-shadow .3s;
+    }
+    .service-card:hover{transform:translateY(-6px);box-shadow:0 8px 30px rgba(0,0,0,.1)}
+    .service-card::before{
+      content:'';position:absolute;inset:0 auto auto 0;height:4px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-light));
+      transform:scaleX(0);transform-origin:left;transition:transform .3s;
+    }
+    .service-card:hover::before{transform:scaleX(1)}
+    .service-icon{font-size:2.4rem;color:var(--accent);margin-bottom:1rem;animation:float 6s ease-in-out infinite}
+    .service-card ul{list-style:disc inside;margin-bottom:1.5rem;color:var(--neutral-700)}
+    .service-card .btn-primary{margin-top:auto} /* <-- botón siempre abajo */
+
+    /* Secciones */
+    section{padding:4rem 0}
+    section:last-of-type{padding-bottom:0}       /* quita hueco blanco */
+    h2{font-size:1.875rem;font-weight:700;margin-bottom:1rem;color:var(--primary)}
+    p.lead{margin-bottom:2rem;color:var(--neutral-600)}
+  </style>
+
+  <!-- –––––– HERO –––––– -->
+  <section class="bg-gradient-to-r from-accent to-accent-light text-white py-24 text-center animate-on-scroll">
+    <div class="max-w-4xl mx-auto px-6">
+      <h1 class="text-4xl md:text-5xl font-heading font-black">
+        Nuestros <span class="gradient-text">Servicios</span>
+      </h1>
+      <p class="mt-4 text-lg md:text-xl">
+        Software a medida para empresas de todos los tamaños – UI · UX sin concesiones.
+      </p>
+    </div>
+  </section>
+
+  <!-- –––––– GRID 8 SERVICIOS –––––– -->
+  <section class="animate-on-scroll">
+    <div class="max-w-7xl mx-auto px-6 service-grid">
+
+      <!-- (las 8 tarjetas, idénticas) -->
+      <!-- Ejemplo tarjeta 1 -->
+      <div class="tiltable">
+        <div class="service-card tiltable-inner">
+          <ion-icon name="desktop-outline" class="service-icon"></ion-icon>
+          <h2>Desarrollo Web Avanzado</h2>
+          <p class="lead">Portales, marketplaces y SaaS.</p>
+          <ul><li>React, Vue, Astro</li><li>SEO técnico &amp; CWV</li><li>Integración ERP/CRM</li><li>Escalabilidad global</li></ul>
+          <a href="/contacto" class="btn-primary">🚀 Impulsa tu web</a>
+        </div>
+      </div>
+
+      <!-- 2 ● Apps -->
+      <div class="tiltable"><div class="service-card tiltable-inner">
+        <ion-icon name="phone-portrait-outline" class="service-icon"></ion-icon>
+        <h2>Apps Móviles Profesionales</h2>
+        <p class="lead">UI nativa, offline-first.</p>
+        <ul><li>Flutter, React Native</li><li>Autenticación biométrica</li><li>Sincronización en tiempo real</li><li>Publicación App Store / Play</li></ul>
+        <a href="/contacto" class="btn-primary">📱 Quiero mi app</a>
+      </div></div>
+
+      <!-- 3 ● Backend -->
+      <div class="tiltable"><div class="service-card tiltable-inner">
+        <ion-icon name="server-outline" class="service-icon"></ion-icon>
+        <h2>Arquitectura Backend</h2>
+        <p class="lead">APIs & microservicios.</p>
+        <ul><li>Node, Python, Go</li><li>Docker & K8s</li><li>SQL / NoSQL tuning</li><li>CI/CD en AWS, Azure</li></ul>
+        <a href="/contacto" class="btn-primary">☁️ Conecta tu negocio</a>
+      </div></div>
+
+      <!-- 4 ● UX -->
+      <div class="tiltable"><div class="service-card tiltable-inner">
+        <ion-icon name="brush-outline" class="service-icon"></ion-icon>
+        <h2>Consultoría & UX</h2>
+        <p class="lead">Diseño centrado en el usuario.</p>
+        <ul><li>Research & testing</li><li>Figma design system</li><li>Accesibilidad AA-AAA</li><li>Optimización CRO</li></ul>
+        <a href="/contacto" class="btn-primary">🎯 Maximiza tu ROI</a>
+      </div></div>
+
+      <!-- 5 ● E-commerce -->
+      <div class="tiltable"><div class="service-card tiltable-inner">
+        <ion-icon name="cart-outline" class="service-icon"></ion-icon>
+        <h2>E-commerce Inteligente</h2>
+        <p class="lead">Ventas 24/7 en cualquier mercado.</p>
+        <ul><li>Headless Shopify / Medusa</li><li>Pasarelas globales</li><li>Motor de promociones</li><li>Analytics & BI</li></ul>
+        <a href="/contacto" class="btn-primary">🛒 Lanza tu tienda</a>
+      </div></div>
+
+      <!-- 6 ● IA -->
+      <div class="tiltable"><div class="service-card tiltable-inner">
+        <ion-icon name="sparkles-outline" class="service-icon"></ion-icon>
+        <h2>IA & Automatización</h2>
+        <p class="lead">Modelos OpenAI, RPA y data-driven.</p>
+        <ul><li>Chatbots GPT-4</li><li>Vision & speech</li><li>Procesos sin papel</li><li>Alertas predictivas</li></ul>
+        <a href="/contacto" class="btn-primary">🤖 Potencia con IA</a>
+      </div></div>
+
+      <!-- 7 ● Soporte -->
+      <div class="tiltable"><div class="service-card tiltable-inner">
+        <ion-icon name="headset-outline" class="service-icon"></ion-icon>
+        <h2>Soporte 24/7</h2>
+        <p class="lead">Incidencias resueltas al instante.</p>
+        <ul><li>NOC & monitorización</li><li>Chat y tickets ilimitados</li><li>SLA garantizado</li><li>Actualizaciones pro</li></ul>
+        <a href="/contacto" class="btn-primary">🕒 Ayuda inmediata</a>
+      </div></div>
+
+      <!-- 8 ● Capacitaciones -->
+      <div class="tiltable"><div class="service-card tiltable-inner">
+        <ion-icon name="school-outline" class="service-icon"></ion-icon>
+        <h2>Capacitaciones</h2>
+        <p class="lead">Forma a tu equipo.</p>
+        <ul><li>Workshops a medida</li><li>Frameworks modernos</li><li>Material premium</li><li>Certificación interna</li></ul>
+        <a href="/contacto" class="btn-primary">🎓 Regístrate ya</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- –––––– CTA FINAL –––––– -->
+  <section class="py-24 text-center bg-gradient-to-r from-accent-light to-accent animate-on-scroll">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-heading font-black text-white mb-8">
+        ¿Listo para <span class="gradient-text">despegar tu proyecto</span> con un partner de confianza?
+      </h2>
+      <a href="/contacto" class="btn-primary px-14 py-6 text-2xl">
+        <ion-icon name="rocket-outline" class="mr-3"></ion-icon>
+        ¡Hablemos Ahora!
+      </a>
+      <p class="mt-6 text-lg text-neutral-200">
+        Nuestro equipo está listo para llevar tu idea al siguiente nivel. ¡Contáctanos y comencemos!
+      </p>
+      <br>
+    </div>
+  </section>
+
+  <!-- –––––– BUBBLE & ICON –––––– -->
+  <div class="cta-bubble">¡Ey&nbsp;👋! ¿Necesitas un presupuesto rápido?<br/>Haz clic en el cohete.</div>
+  <div class="floating-cta" onclick="location.href='/contacto'">
+    <ion-icon name="rocket-outline" class="text-white text-2xl"></ion-icon>
+  </div>
+
+  <!-- –––––– SCRIPTS –––––– -->
+  <script type="module">
+    /* barra de progreso (si decides añadirla en el layout) */
+    const bar = document.getElementById('scroll-bar');
+    if (bar){
+      window.addEventListener('scroll',()=>{
+        const {scrollTop,scrollHeight,clientHeight}=document.documentElement;
+        bar.style.width=`${(scrollTop/(scrollHeight-clientHeight))*100}%`;
+      });
+    }
+
+    /* Fade-in */
+    const io=new IntersectionObserver((es)=>es.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+    }),{threshold:.15});
+    document.querySelectorAll('.animate-on-scroll').forEach(el=>io.observe(el));
+
+    /* Tilt */
+    document.querySelectorAll('.tiltable').forEach(card=>{
+      const inner=card.firstElementChild; if(!inner) return;
+      const reset=()=>inner.style.transform='rotateX(0deg) rotateY(0deg)';
+      card.addEventListener('mousemove',ev=>{
+        const r=card.getBoundingClientRect();
+        const x=(ev.clientX-r.left)/r.width-.5;
+        const y=(ev.clientY-r.top)/r.height-.5;
+        inner.style.transform=`rotateX(${y*-12}deg) rotateY(${x*12}deg)`;
+      });
+      ['mouseleave','touchend','mousedown'].forEach(evt=>card.addEventListener(evt,reset));
+    });
+  </script>
+</Layout>
