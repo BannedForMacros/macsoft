@@ -1,0 +1,803 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Acerca de Nosotros | MacSoft"
+  description="Descubre quiénes somos en MacSoft: nuestra misión, visión, valores y las tecnologías que impulsan nuestro trabajo."
+>
+  <!-- Ionicons -->
+  <script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    defer
+  ></script>
+  <script
+    nomodule
+    src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    defer
+  ></script>
+
+  <style is:global>
+    /* ───────── Enhanced Animations ───────── */
+    /* ───────── CSS Variables ───────── */
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .animate-on-scroll.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .animate-from-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .animate-from-left.in {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .animate-from-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .animate-from-right.in {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .animate-scale {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .animate-scale.in {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .animate-rotate {
+      opacity: 0;
+      transform: rotate(-10deg) scale(0.8);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .animate-rotate.in {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.8) rotate(-5deg); }
+      50% { opacity: 1; transform: scale(1.05) rotate(2deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(5deg); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(6,182,212,0.3); }
+      50% { box-shadow: 0 0 40px rgba(6,182,212,0.6); }
+    }
+
+    /* ───────── Smooth Tech Marquee ───────── */
+    @keyframes scrollTech {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    @keyframes iconSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* ───────── Hero Section ───────── */
+/* ───────── Hero Section (versión paleta global) ───────── */
+.about-hero{
+  /* degradado muy sutil con los neutros ya definidos */
+  background: var(--accent);
+  color:var(--primary);
+  text-align:center;
+padding-block: clamp(4rem, 20vh, 6rem) 3rem; /* top auto – bottom 3 rem */
+  min-height: 60vh;               /* mantiene la presencia visual */
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+.about-hero::after{
+  content:'';
+  position:absolute; inset:0;
+  background:var(--accent);          /* mismo fondo */
+  transform-origin:center;
+  z-index:-1;                        /* detrás del texto */
+}
+.about-hero::after{ transform:translateY(var(--hero-offset,0)); }
+
+
+/* títulos y textos heredan primary/neutrals */
+.about-hero h1{
+  font-size:clamp(2.5rem,6vw,5rem);
+  margin-bottom:1rem;
+  color: aliceblue;
+  animation:popIn 1s ease forwards;
+  position:relative;z-index:1;
+}
+.about-hero p{
+  font-size:1.25rem;
+  max-width:700px;margin:0 auto;
+  line-height:1.6;
+  color: azure;
+  position:relative;z-index:1;
+}
+    
+
+    /* ───────── Section Titles ───────── */
+    h2.section-title {
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 4rem 0 2rem;
+      color: var(--primary);
+      position: relative;
+    }
+    h2.section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      margin: 0.5rem auto 0;
+      border-radius: 2px;
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    /* ───────── Mission & Vision ───────── */
+    .about-section {
+      background-color: ;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 0;
+    }
+    .about-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    .about-card:hover::before {
+      left: 100%;
+    }
+    .about-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+    .about-card ion-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      animation: float 3s ease-in-out infinite;
+    }
+    .about-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    .about-card p {
+      color: var(--neutral-700);
+      line-height: 1.6;
+    }
+    /* ---------- VALORES ---------- */
+.values-section{
+  background: var(--neutral-700);      /* navy profundo */
+  padding: 4rem 0;
+}
+
+/* Si el título te queda poco legible sobre el azul,
+   ponlo en blanco: */
+.values-section h2.section-title{
+  margin-block: 2.5rem 1.5rem;
+  color: #fff;                   /* título en blanco */
+}
+
+/* Las tarjetas siguen blancas así que se leen bien;  
+   si quieres darles un borde invisible cuando el fondo
+   es azul, añade:                                  */
+.value-card{
+  background: #fff;
+  border: 1px solid rgba(255,255,255,0.05); /* opcional */
+}
+
+    /* ───────── Core Values (6) ───────── */
+    .values-grid {
+      display: grid;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    @media (min-width: 1024px) {
+      .values-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .value-card {
+      background: var(--neutral-50);
+      padding: 2rem;
+      border-radius: 1rem;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .value-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, var(--accent), var(--accent-light));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .value-card:hover::after {
+      opacity: 0.1;
+    }
+    .value-card:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+    .value-card ion-icon {
+      font-size: 2rem;
+      color: var(--accent-dark);
+      margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+    .value-card:hover ion-icon {
+      transform: scale(1.2) rotate(10deg);
+    }
+    .value-card h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      position: relative;
+      z-index: 1;
+    }
+    .value-card p {
+      color: var(--neutral-700);
+      font-size: 1rem;
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ───────── Enhanced Tech Stack Marquee ───────── */
+    /* ───────── Solución mejorada para Tech Stack Marquee ───────── */
+.tech-section {
+  background: var(--neutral-100);
+  padding: 4rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.tech-section::before,
+.tech-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tech-section::before {
+  left: 0;
+  background: linear-gradient(to right, var(--neutral-100), transparent);
+}
+
+.tech-section::after {
+  right: 0;
+  background: linear-gradient(to left, var(--neutral-100), transparent);
+}
+
+.tech-marquee {
+  display: flex;
+  width: 200%;
+  animation: scrollTech 40s linear infinite;
+}
+
+.tech-track {
+  display: flex;
+  gap: 3rem; /* Incrementé el gap de 2rem a 3rem */
+  width: 50%;
+  justify-content: space-around;
+  align-items: center; /* Añadí para alinear verticalmente */
+  min-height: 160px; /* Altura mínima para evitar colapso */
+}
+
+.tech-card {
+  flex: 0 0 auto;
+  width: 140px;
+  min-width: 140px; /* Asegurar ancho mínimo */
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1; /* Añadí z-index base */
+}
+
+.tech-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, var(--accent), var(--accent-light));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tech-card:hover::before {
+  opacity: 0.05;
+}
+
+.tech-card:hover {
+  transform: translateY(-10px) scale(1.05); /* Reduje el scale de 1.1 a 1.05 */
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  z-index: 10; /* Z-index más alto en hover */
+}
+
+.tech-card ion-icon {
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.tech-card:hover ion-icon {
+  animation: iconSpin 0.6s ease-in-out;
+}
+
+.tech-card h5 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--neutral-800);
+  position: relative;
+  z-index: 1;
+}
+
+/* ───────── Mejoras responsivas ───────── */
+@media (max-width: 768px) {
+  .tech-marquee {
+    animation-duration: 30s;
+  }
+  
+  .tech-track {
+    gap: 2rem; /* Gap reducido en móviles */
+  }
+  
+  .tech-card {
+    width: 120px;
+    min-width: 120px;
+    padding: 1rem;
+  }
+  
+  .tech-card ion-icon {
+    font-size: 2rem;
+  }
+  
+  .tech-card:hover {
+    transform: translateY(-5px) scale(1.02); /* Animación más sutil en móviles */
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-track {
+    gap: 1.5rem;
+  }
+  
+  .tech-card {
+    width: 100px;
+    min-width: 100px;
+    padding: 0.75rem;
+  }
+  
+  .tech-card ion-icon {
+    font-size: 1.8rem;
+  }
+  
+  .tech-card h5 {
+    font-size: 0.9rem;
+  }
+}
+
+/* ───────── Keyframes mejorados ───────── */
+@keyframes scrollTech {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes iconSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ───────── Solución alternativa: Pausar animación en hover de toda la sección ───────── */
+.tech-section:hover .tech-marquee {
+  animation-play-state: paused;
+}
+
+.tech-section:hover .tech-card {
+  cursor: pointer;
+}
+
+/* ───────── Solución adicional: Ajustar el contenedor para pantallas muy pequeñas ───────── */
+@media (max-width: 320px) {
+  .tech-section {
+    padding: 2rem 0;
+  }
+  
+  .tech-track {
+    gap: 1rem;
+  }
+  
+  .tech-card {
+    width: 90px;
+    min-width: 90px;
+    padding: 0.5rem;
+  }
+  
+  .tech-card ion-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tech-card h5 {
+    font-size: 0.8rem;
+  }
+}
+
+    /* ───────── Final CTA ───────── */
+    .about-cta {
+      text-align: center;
+      margin: 4rem 0;
+    }
+    .about-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(45deg, var(--accent), var(--accent-light));
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(6,182,212,0.4);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-cta a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    .about-cta a:hover::before {
+      left: 100%;
+    }
+    .about-cta a:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 50px rgba(6,182,212,0.6);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .about-cta a ion-icon {
+      transition: transform 0.3s ease;
+    }
+    .about-cta a:hover ion-icon {
+      transform: scale(1.2);
+    }
+
+    /* ───────── Responsive Enhancements ───────── */
+    @media (max-width: 768px) {
+      .tech-marquee {
+        animation-duration: 30s;
+      }
+      .tech-card {
+        width: 120px;
+        padding: 1rem;
+      }
+      .tech-card ion-icon {
+        font-size: 2rem;
+      }
+    }
+  </style>
+
+  <!-- Hero -->
+  <section class="about-hero">
+    <h1 class="animate-on-scroll">Quiénes Somos en MacSoft</h1>
+    <p class="animate-on-scroll">
+      En MacSoft transformamos tus ideas en productos digitales de alto impacto.
+      Con más de 2 años de experiencia, nuestra pasión por la innovación y la excelencia
+      nos guía en cada paso.
+    </p>
+  </section>
+
+  <!-- Misión & Visión -->
+  <h2 class="section-title animate-on-scroll">Misión & Visión</h2>
+  <div class="about-section">
+    <div class="about-card animate-from-left">
+      <ion-icon name="rocket-outline"></ion-icon>
+      <h3>Misión</h3>
+      <p>
+        Impulsar el crecimiento de negocios a través de soluciones tecnológicas
+        personalizadas, garantizando calidad, innovación y un retorno de inversión tangible.
+      </p>
+    </div>
+    <div class="about-card animate-from-right">
+      <ion-icon name="eye-outline"></ion-icon>
+      <h3>Visión</h3>
+      <p>
+        Ser reconocidos como el estudio digital líder en Latinoamérica,
+        asociado a la excelencia y al éxito continuo de nuestros clientes.
+      </p>
+    </div>
+  </div>
+
+  <!-- Valores -->
+   <section class="values-section">
+  <h2 class="section-title animate-on-scroll">Nuestros Valores</h2>
+  <div class="values-grid">
+    <div class="value-card animate-scale">
+      <ion-icon name="people-outline"></ion-icon>
+      <h4>Colaboración</h4>
+      <p>Trabajamos mano a mano contigo para alcanzar tus objetivos.</p>
+    </div>
+    <div class="value-card animate-rotate">
+      <ion-icon name="bulb-outline"></ion-icon>
+      <h4>Innovación</h4>
+      <p>Apostamos por ideas frescas y tecnología de vanguardia.</p>
+    </div>
+    <div class="value-card animate-scale">
+      <ion-icon name="shield-checkmark-outline"></ion-icon>
+      <h4>Compromiso</h4>
+      <p>Tu satisfacción y éxito son nuestra prioridad absoluta.</p>
+    </div>
+    <div class="value-card animate-rotate">
+      <ion-icon name="speedometer-outline"></ion-icon>
+      <h4>Eficiencia</h4>
+      <p>Procesos ágiles que garantizan entregas rápidas y seguras.</p>
+    </div>
+    <div class="value-card animate-scale">
+      <ion-icon name="analytics-outline"></ion-icon>
+      <h4>Transparencia</h4>
+      <p>Comunicación clara y reportes constantes en cada fase.</p>
+    </div>
+    <div class="value-card animate-rotate">
+      <ion-icon name="hand-right-outline"></ion-icon>
+      <h4>Flexibilidad</h4>
+      <p>Nos adaptamos a tus cambios y necesidades en tiempo real.</p>
+    </div>
+  </div>
+   </section>
+
+  <!-- Tecnologías -->
+  <h2 class="section-title animate-on-scroll">Tecnologías que Usamos</h2>
+  <section class="tech-section">
+    <div class="tech-marquee">
+      <div class="tech-track">
+        <div class="tech-card">
+          <ion-icon name="logo-react"></ion-icon>
+          <h5>React</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="logo-nodejs"></ion-icon>
+          <h5>Node.js</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="cloud-outline"></ion-icon>
+          <h5>AWS</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="logo-docker"></ion-icon>
+          <h5>Docker</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="logo-figma"></ion-icon>
+          <h5>Figma</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="code-slash-outline"></ion-icon>
+          <h5>GraphQL</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="logo-javascript"></ion-icon>
+          <h5>TypeScript</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="color-palette-outline"></ion-icon>
+          <h5>Tailwind CSS</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="logo-vue"></ion-icon>
+          <h5>Next.js</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="leaf-outline"></ion-icon>
+          <h5>MongoDB</h5>
+        </div>
+      </div>
+      <div class="tech-track">
+        <div class="tech-card">
+          <ion-icon name="logo-react"></ion-icon>
+          <h5>React</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="logo-nodejs"></ion-icon>
+          <h5>Node.js</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="cloud-outline"></ion-icon>
+          <h5>AWS</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="logo-docker"></ion-icon>
+          <h5>Docker</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="logo-figma"></ion-icon>
+          <h5>Figma</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="code-slash-outline"></ion-icon>
+          <h5>GraphQL</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="logo-javascript"></ion-icon>
+          <h5>TypeScript</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="color-palette-outline"></ion-icon>
+          <h5>Tailwind CSS</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="logo-vue"></ion-icon>
+          <h5>Next.js</h5>
+        </div>
+        <div class="tech-card">
+          <ion-icon name="leaf-outline"></ion-icon>
+          <h5>MongoDB</h5>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <div class="about-cta animate-on-scroll">
+    <a href="#contacto-form">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      ¡Hablemos de tu próximo proyecto!
+    </a>
+  </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // IntersectionObserver para animaciones con diferentes delays
+    const createObserver = (delay = 0) => {
+      return new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('in');
+              obs.unobserve(entry.target);
+            }, delay * index);
+          }
+        });
+      }, { 
+        threshold: 0.1, 
+        rootMargin: '0px 0px -50px 0px' 
+      });
+    };
+
+    // Observadores para diferentes tipos de animaciones
+    const scrollObserver = createObserver(100);
+    const leftObserver = createObserver(150);
+    const rightObserver = createObserver(200);
+    const scaleObserver = createObserver(100);
+    const rotateObserver = createObserver(150);
+
+    // Aplicar observadores
+    document.querySelectorAll('.animate-on-scroll').forEach(el => scrollObserver.observe(el));
+    document.querySelectorAll('.animate-from-left').forEach(el => leftObserver.observe(el));
+    document.querySelectorAll('.animate-from-right').forEach(el => rightObserver.observe(el));
+    document.querySelectorAll('.animate-scale').forEach(el => scaleObserver.observe(el));
+    document.querySelectorAll('.animate-rotate').forEach(el => rotateObserver.observe(el));
+
+    // Pausar animaciones en hover para las tarjetas tech
+    const techCards = document.querySelectorAll('.tech-card');
+    const techMarquee = document.querySelector('.tech-marquee');
+    
+    techCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        if (techMarquee instanceof HTMLElement) {
+          techMarquee.style.animationPlayState = 'paused';
+        }
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        if (techMarquee instanceof HTMLElement) {
+          techMarquee.style.animationPlayState = 'running';
+        }
+      });
+    });
+
+    // Efecto parallax sutil en el hero
+const hero = document.querySelector('.about-hero');
+window.addEventListener('scroll', () => {
+  const limit = 120;                 // píxeles máximos que se mueve
+  const rate  = Math.max(window.pageYOffset * -0.3, -limit);
+  if (hero instanceof HTMLElement) {
+    hero.style.transform = `translateY(${rate}px)`;
+  }
+});
+  });
+
+  const heroBg = document.querySelector('.about-hero::after'); // no existe como nodo
+
+window.addEventListener('scroll', () => {
+  const limit = 120;
+  const rate  = Math.max(window.pageYOffset * -0.3, -limit);
+
+  /* usamos la propiedad CSS de la pseudo-capa */
+  document.documentElement.style.setProperty('--hero-offset', `${rate}px`);
+});
+</script>
+
+</Layout>

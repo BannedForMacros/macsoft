@@ -4,6 +4,11 @@ export default {
     './src/**/*.{astro,html,js,jsx,ts,tsx}',
     './src/styles/global.css'
   ],
+  safelist: [
+    "progress-indicator",
+    "animate-on-scroll",
+    "in"               // el Observer la agrega dinámicamente
+  ],
   theme: {
     extend: {
       colors: {

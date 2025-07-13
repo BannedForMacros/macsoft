@@ -1,0 +1,142 @@
+---
+/* src/pages/equipo.astro */
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+ 
+
+const title       = "Nuestro Equipo | MacSoft";
+const description = "Conoce al equipo multidisciplinario de MacSoft: expertos en desarrollo, diseño y gestión de proyectos.";
+---
+<Layout {title} {description}>
+
+  <!-- ========== ESTILOS ========== -->
+  <style is:global>
+    /* ---------- HERO ---------- */
+    .team-hero{
+      background:var(--accent);
+      color:#fff;
+      text-align:center;
+      padding:6rem 2rem 5rem;
+    }
+    .team-hero h1{
+      font-size:clamp(2.5rem,6vw,4.5rem);
+      font-weight:900;
+      line-height:1.1;
+      margin-bottom:1rem;
+    }
+    .team-hero p{
+      font-size:1.125rem;
+      max-width:700px;
+      margin:0 auto;
+      line-height:1.6;
+      color:rgba(255,255,255,.9);
+    }
+
+    /* ---------- SECCIÓN PRINCIPAL ---------- */
+    .team-section{padding:6rem 2rem;background:var(--neutral-50);}
+    .team-header{text-align:center;max-width:800px;margin:0 auto 3rem;}
+    .team-title{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--primary);margin-bottom:1rem;}
+    .team-subtitle{font-size:1.125rem;color:var(--neutral-700);}
+
+    /* GRID */
+    .team-grid{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));max-width:1200px;margin:0 auto;}
+
+    /* CARD */
+    .team-card{position:relative;overflow:hidden;background:#fff;padding:2rem 1.5rem;border-radius:1rem;text-align:center;
+               box-shadow:0 10px 30px rgba(0,0,0,.05);transition:.35s;}
+    .team-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(0,0,0,.12);}
+
+    /* AVATAR */
+    .team-photo{width:110px;height:110px;border-radius:50%;background:var(--neutral-100);
+                display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;}
+    .team-photo ion-icon{font-size:4rem;color:var(--neutral-400);}
+
+    /* TEXTO */
+    .team-role{font-size:1.25rem;font-weight:700;color:var(--primary);margin-bottom:.3rem;}
+    .team-area{font-size:.95rem;color:var(--neutral-600);}
+
+    /* HOVER overlay */
+    .card-overlay{position:absolute;inset:0;background:rgba(37,99,235,.85);color:#fff;display:flex;
+                  flex-direction:column;align-items:center;justify-content:center;gap:.6rem;padding:1.2rem;
+                  font-size:.95rem;font-weight:500;opacity:0;backdrop-filter:blur(4px);transition:.3s;}
+    .team-card:hover .card-overlay{opacity:1;}
+
+    /* CULTURE PILLARS */
+    .culture{margin:5rem auto 0;max-width:900px;display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+    .culture-item{background:#fff;border:1px solid var(--neutral-200);border-radius:1rem;padding:2rem;
+                  box-shadow:0 5px 20px rgba(0,0,0,.04);text-align:center;transition:.3s;}
+    .culture-item:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,.1);}
+    .culture-item ion-icon{font-size:2rem;color:var(--accent);}
+    .culture-title{font-weight:700;color:var(--primary);margin:.8rem 0 .5rem;}
+    .culture-desc{font-size:.95rem;color:var(--neutral-600);line-height:1.6;}
+
+    /* ANIMATION */
+    .animate-on-scroll{opacity:0;transform:translateY(30px);transition:.6s;}
+    .animate-on-scroll.in{opacity:1;transform:none;}
+  </style>
+
+  <!-- ========== HERO ========== -->
+  <section class="team-hero">
+    <h1>Nuestro Equipo</h1>
+    <p>Un grupo multidisciplinario comprometido con la excelencia tecnológica, la innovación y tu éxito.</p>
+  </section>
+
+  <!-- ========== CONTENIDO PRINCIPAL ========== -->
+  <section class="team-section">
+
+
+
+    <!-- GRID DE ROLES -->
+    <div class="team-grid">
+      {/** Lista de roles genéricos **/}
+      {[
+        {icon:"server-outline",  role:"Desarrollador&nbsp;Backend", area:"Microservicios & APIs",  desc:"Especialista en Node.js, Python y bases de datos escalables."},
+        {icon:"color-palette-outline", role:"Diseñador&nbsp;UX/UI", area:"Experiencias & Prototipos", desc:"Wireframes, mockups y pruebas de usabilidad."},
+        {icon:"cloud-outline",   role:"Ingeniero&nbsp;DevOps", area:"CI/CD & Cloud",             desc:"Automatización de despliegues y monitorización 24/7."},
+        {icon:"clipboard-outline",role:"Product&nbsp;Owner", area:"Estrategia & Roadmaps",       desc:"Visión de producto y priorización de funcionalidades."},
+        {icon:"shield-checkmark-outline",role:"QA&nbsp;Engineer",area:"Testing &amp; Calidad",  desc:"Tests manuales y automatizados para releases sin bugs."},
+        {icon:"bar-chart-outline",role:"Data&nbsp;Analyst",  area:"Insights &amp; BI",           desc:"Dashboards y analítica para toma de decisiones."},
+        {icon:"sparkles-outline",role:"Scrum&nbsp;Master",   area:"Agilidad &amp; Coaching",     desc:"Facilita sprints y mejora continua del equipo."},
+        {icon:"megaphone-outline",role:"Marketing&nbsp;Tech",area:"Growth &amp; Funnels",        desc:"Estrategias data-driven para escalar tu producto."},
+      ].map(m=>(
+        <div class="team-card animate-on-scroll">
+          <div class="team-photo"><ion-icon name={m.icon}></ion-icon></div>
+          <h3 class="team-role" set:html={m.role}></h3>
+          <p  class="team-area" set:html={m.area}></p>
+
+          <div class="card-overlay">
+            <ion-icon name={m.icon}></ion-icon>
+            {m.desc}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CULTURE / VALORES -->
+    <div class="culture">
+      <div class="culture-item animate-on-scroll">
+        <ion-icon name="bulb-outline"></ion-icon>
+        <h4 class="culture-title">Innovación Continua</h4>
+        <p class="culture-desc">Adoptamos tecnologías emergentes y fomentamos la creatividad en cada proyecto.</p>
+      </div>
+      <div class="culture-item animate-on-scroll">
+        <ion-icon name="people-outline"></ion-icon>
+        <h4 class="culture-title">Colaboración Real</h4>
+        <p class="culture-desc">Trabajamos codo a codo con nuestros clientes; tu visión se convierte en la hoja de ruta.</p>
+      </div>
+      <div class="culture-item animate-on-scroll">
+        <ion-icon name="shield-outline"></ion-icon>
+        <h4 class="culture-title">Calidad &amp; Seguridad</h4>
+        <p class="culture-desc">Procesos de QA rigurosos y mejores prácticas para proteger tus datos y tu negocio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== OBSERVADOR PARA ANIMACIONES ========== -->
+  <script>
+    const io=new IntersectionObserver((entries,ob)=>
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ob.unobserve(e.target);}})
+    ,{threshold:.15});
+    document.querySelectorAll('.animate-on-scroll').forEach(el=>io.observe(el));
+  </script>
+</Layout>

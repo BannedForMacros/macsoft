@@ -1,114 +1,205 @@
 ---
+/* src/layouts/Layout.astro   (copia y pega tal cual) */
 import "../styles/global.css";
+
 const {
-  title = "MacSoft",
-  description = "Software a Medida que Impulsa tu Empresa",
+  title       = "MacSoft | Desarrollo de Software Empresarial",
+  description = "Software a Medida que impulsa tu empresa",
 } = Astro.props;
 ---
-
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Fonts + Alpine + Ionicons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script type="module"  src="https://unpkg.com/ionicons@7.2.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule       src="https://unpkg.com/ionicons@7.2.2/dist/ionicons/ionicons.js"></script>
 
-    <!-- Alpine.js & Ionicons -->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.2.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.2.2/dist/ionicons/ionicons.js"
-    ></script>
+  <!-- ============ CSS GLOBAL ============ -->
+  <style is:global>
+    /* Vars + reset (resumido) */
+    :root{--primary:#0f172a;--accent:#2563eb;--accent-dark:#1d4ed8;--neutral-50:#f8fafc;--neutral-200:#e2e8f0;--neutral-600:#475569;--nav-h:4rem;--gradient-accent:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;color:var(--neutral-600);background:var(--neutral-50);line-height:1.6;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
 
-    <!-- Una sola línea de estilos para exponer --nav-h -->
-    <style>:root{--nav-h:4rem}</style>
-  </head>
+    /* ====  NAVBAR  ==== */
+    .navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-h);display:flex;align-items:center;
+            background:rgba(255,255,255,.8);backdrop-filter:blur(18px);transition:background .25s,box-shadow .25s;z-index:50;}
+    .navbar--solid{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08);}
+    .logo{font-size:28px;font-weight:700;color:var(--primary);} .logo span{color:var(--accent);} .logo:hover{transform:scale(1.05);transition:.25s}
+    .nav-links{display:none;gap:1.5rem;}                /* ocultas en móvil           */
+    @media(min-width:768px){.nav-links{display:flex;align-items:center;}}
+    .nav-link{position:relative;font-weight:500;padding:.75rem 0;color:var(--neutral-600);transition:color .25s;}
+    .nav-link:hover{color:var(--accent);}
+    .nav-link::after{content:'';position:absolute;left:0;bottom:-4px;width:100%;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+    .nav-link:hover::after{transform:scaleX(1);}
+    .nav-link[data-active="true"]{color:var(--accent-dark);} .nav-link[data-active="true"]::after{transform:scaleX(1);}
+    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.9rem 2rem;border:none;border-radius:12px;font-weight:600;cursor:pointer;transition:.25s;}
+    .btn-primary{background:var(--gradient-accent);color:#fff;} .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(37,99,235,.4);}
+    /* Burger */
+    .burger{display:flex;flex-direction:column;gap:4px;width:28px;height:22px;cursor:pointer;}
+    @media(min-width:768px){.burger{display:none;}}
+    .line{width:100%;height:3px;background:var(--primary);border-radius:3px;transition:.3s;}
+    .line1.open{transform:translateY(9px) rotate(45deg);}
+    .line2.open{opacity:0;}
+    .line3.open{transform:translateY(-9px) rotate(-45deg);}
+    /* Menú móvil flotante */
+    .mobile-menu{position:absolute;top:100%;left:0;right:0;width:100%;
+                 backdrop-filter:blur(12px);background:rgba(255,255,255,.95);border-top:1px solid var(--neutral-200);}
+    .mobile-menu .nav-link{display:block;padding:.75rem 1rem;}
 
-  <body class="antialiased font-sans text-gray-800">
-    <!-- NAVBAR (fija altura → --nav-h) -->
-    <nav
-      x-data="{ open:false }"
-      @resize.window="$nextTick(()=> document.documentElement.style.setProperty('--nav-h',`${$el.offsetHeight}px`))"
-      x-init="document.documentElement.style.setProperty('--nav-h',`${$el.offsetHeight}px`)"
-      class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200"
-    >
-      <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-        <a href="/" class="text-primary font-heading text-2xl font-bold">
-          Mac<span class="text-accent">Soft</span>
-        </a>
+    /* (tu footer, whatsapp, animaciones… como antes) */
+    /* ───────── FOOTER COMPLETO ───────── */
+.footer{
+  background:var(--primary);
+  color:#fff;
+  padding:4rem 0 2rem;
+  position:relative;
+  overflow:hidden;
+}
+/* banda de brillo diagonal */
+.footer::before{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(45deg,transparent 30%,rgba(37,99,235,.12) 50%,transparent 70%);
+  animation:shimmer 6s linear infinite;
+  pointer-events:none;
+}
+/* animación shimmer */
+@keyframes shimmer{
+  0%  {transform:translateX(-100%) rotate(0deg);}
+  100%{transform:translateX(100%)  rotate(0deg);}
+}
 
-        <div class="hidden md:flex space-x-6">
-          <a href="/servicio" class="nav-link">Servicios</a>
-          <a href="/equipo" class="nav-link">Nuestro&nbsp;Equipo</a>
-          <a href="/procesos" class="nav-link">Procesos</a>
-          <a href="/acerca" class="nav-link">Acerca&nbsp;de&nbsp;Nosotros</a>
-          <a href="/contacto" class="btn btn-primary">Contáctanos</a>
+/* rejilla de 4 columnas AUTO-responsive */
+.grid{display:grid;gap:2rem;}
+.grid-4{grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+
+/* logo y enlaces */
+.footer-logo{font-size:28px;font-weight:700;}
+.footer-logo span{color:var(--accent);}
+.footer-link{color:var(--neutral-300);transition:color .25s;}
+.footer-link:hover{color:var(--accent);}
+
+/* animación de aparición si usas .animate-on-scroll */
+.animate-on-scroll{opacity:0;transform:translateY(30px);transition:.6s;}
+.animate-on-scroll.in{opacity:1;transform:none;}
+    .whatsapp-btn{position:fixed;bottom:30px;right:30px;width:60px;height:60px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1000;}
+  </style>
+</head>
+
+<body>
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar relative"
+       x-data="{open:false, scrolled:false}"
+       x-init="scrolled = window.scrollY > 10"
+       @scroll.window="scrolled = window.scrollY > 10"
+       :class="scrolled ? 'navbar--solid' : ''">
+
+    <div class="container flex items-center justify-between">
+      <a href="/" class="logo">Mac<span>Soft</span></a>
+
+      <!-- Escritorio -->
+      <ul class="nav-links">
+        <li><a href="/servicio" class="nav-link" data-active={Astro.url.pathname==='/servicio'}>Servicios</a></li>
+        <li><a href="/equipo"   class="nav-link" data-active={Astro.url.pathname==='/equipo'}>Nuestro&nbsp;Equipo</a></li>
+        <li><a href="/procesos" class="nav-link" data-active={Astro.url.pathname==='/procesos'}>Procesos</a></li>
+        <li><a href="/acerca"   class="nav-link" data-active={Astro.url.pathname==='/acerca'}>Acerca de Nosotros</a></li>
+        <li><a href="/contacto" class="btn btn-primary">Contáctanos</a></li>
+      </ul>
+
+      <!-- Burger -->
+      <button class="burger" @click="open=!open" :aria-expanded="open">
+        <span :class="open ? 'line line1 open':'line line1'"></span>
+        <span :class="open ? 'line line2 open':'line line2'"></span>
+        <span :class="open ? 'line line3 open':'line line3'"></span>
+      </button>
+    </div>
+
+    <!-- Móvil -->
+    <div x-show="open" x-transition.origin.top class="mobile-menu md:hidden">
+      <ul class="py-4 space-y-1">
+        <li><a @click="open=false" href="/servicio" class="nav-link">Servicios</a></li>
+        <li><a @click="open=false" href="/equipo"   class="nav-link">Nuestro Equipo</a></li>
+        <li><a @click="open=false" href="/procesos" class="nav-link">Procesos</a></li>
+        <li><a @click="open=false" href="/acerca"   class="nav-link">Acerca de Nosotros</a></li>
+        <li><a @click="open=false" href="/contacto" class="btn btn-primary w-full justify-center">Contáctanos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============ CONTENIDO ============ -->
+  <main style="padding-top:var(--nav-h)"><slot /></main>
+
+  <!-- ───── FOOTER ───── -->
+  <footer class="footer">
+    <div class="container grid grid-4" style="margin-bottom:2rem">
+      <!-- Logo + redes -->
+      <div class="animate-on-scroll">
+        <h3 class="footer-logo mb-4">Mac<span>Soft</span></h3>
+        <p style="color:var(--neutral-300);line-height:1.7;margin-bottom:1.3rem">
+          Transformamos ideas en soluciones digitales innovadoras. Más de 5 años creando experiencias excepcionales.
+        </p>
+        <div class="flex space-x-4">
+          <a href="#" class="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition"><ion-icon name="logo-linkedin" style="color:#fff"></ion-icon></a>
+          <a href="#" class="w-10 h-10 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full flex items-center justify-center hover:scale-110 transition"><ion-icon name="logo-twitter"  style="color:#fff"></ion-icon></a>
+          <a href="#" class="w-10 h-10 bg-gradient-to-r from-gray-700 to-gray-800 rounded-full flex items-center justify-center hover:scale-110 transition"><ion-icon name="logo-github"   style="color:#fff"></ion-icon></a>
         </div>
-
-        <button
-          @click="open = !open"
-          class="md:hidden p-2 rounded hover:bg-gray-100 transition"
-        >
-          <ion-icon :name="open ? 'close' : 'menu'" class="text-2xl"></ion-icon>
-        </button>
       </div>
-
-      <!-- menú móvil -->
-      <div
-        x-show="open"
-        x-transition
-        class="md:hidden bg-white/90 backdrop-blur-md border-t border-gray-200"
-        @open.window="$nextTick(()=> document.documentElement.style.setProperty('--nav-h',`${$root.offsetHeight}px`))"
-      >
-        <div class="px-6 py-4 space-y-2">
-          <a @click="open=false" href="/servicio" class="block nav-link">Servicios</a>
-          <a @click="open=false" href="/equipo" class="block nav-link">Nuestro&nbsp;Equipo</a>
-          <a @click="open=false" href="/procesos" class="block nav-link">Procesos</a>
-          <a @click="open=false" href="/acerca" class="block nav-link">Acerca&nbsp;de&nbsp;Nosotros</a>
-          <a @click="open=false" href="/contacto" class="block btn btn-primary w-full text-center">
-            Contáctanos
-          </a>
-        </div>
+      <!-- Columnas de enlaces -->
+      <div class="animate-on-scroll">
+        <h4 style="color:#fff;font-weight:600;margin-bottom:1rem">Servicios</h4>
+        <ul class="space-y-3">
+          <li><a class="footer-link" href="#">Desarrollo Web</a></li>
+          <li><a class="footer-link" href="#">Apps Móviles</a></li>
+          <li><a class="footer-link" href="#">Arquitectura Backend</a></li>
+          <li><a class="footer-link" href="#">Consultoría Técnica</a></li>
+        </ul>
       </div>
-    </nav>
-
-    <!-- CONTENIDO (se adapta al alto real del navbar) -->
-    <main style="padding-top:var(--nav-h);">
-      <slot />
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-100 py-8">
-      <div class="max-w-7xl mx-auto px-6 text-center text-gray-500">
-        © {new Date().getFullYear()} MacSoft. Todos los derechos reservados.
+      <div class="animate-on-scroll">
+        <h4 style="color:#fff;font-weight:600;margin-bottom:1rem">Empresa</h4>
+        <ul class="space-y-3">
+          <li><a class="footer-link" href="#">Acerca de Nosotros</a></li>
+          <li><a class="footer-link" href="#">Nuestro Equipo</a></li>
+          <li><a class="footer-link" href="#">Casos de Éxito</a></li>
+          <li><a class="footer-link" href="#">Blog Técnico</a></li>
+        </ul>
       </div>
-    </footer>
+      <div class="animate-on-scroll">
+        <h4 style="color:#fff;font-weight:600;margin-bottom:1rem">Contacto</h4>
+        <ul class="space-y-3">
+          <li class="footer-link">Chiclayo, Lambayeque, Perú</li>
+          <li class="footer-link">+51 936 313 648</li>
+          <li><a class="footer-link" href="mailto:contacto@macsoft.pe">contacto@macsoft.pe</a></li>
+        </ul>
+      </div>
+    </div>
 
-    <!-- Intersection Observer para animaciones de scroll -->
-    <script>
-      const observer=new IntersectionObserver(
-        entries=>{
-          entries.forEach(e=>{
-            if(e.isIntersecting){
-              e.target.classList.add('in');
-              observer.unobserve(e.target);
-            }
-          });
-        },
-        {threshold:.15}
-      );
-      document.querySelectorAll('.animate-on-scroll').forEach(el=>observer.observe(el));
-    </script>
-  </body>
+    <div style="border-top:1px solid var(--neutral-700);padding-top:2rem;text-align:center">
+      <p style="color:var(--neutral-400)">© 2025 MacSoft. Todos los derechos reservados. Desarrollado con ❤️ en Chiclayo – Perú.</p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flotante con mensaje predeterminado -->
+  <a href="https://wa.me/51936313648?text=Hola%20MacSoft%20%F0%9F%91%8B%20Estoy%20interesado%20en%20sus%20servicios%20de%20desarrollo%20de%20software.%20%C2%BFPodr%C3%ADan%20brindarme%20m%C3%A1s%20informaci%C3%B3n%3F" 
+     class="whatsapp-btn" 
+     target="_blank" 
+     title="Contáctanos por WhatsApp">
+    <ion-icon name="logo-whatsapp" style="color:#fff;font-size:1.5rem"></ion-icon>
+  </a>
+
+  <!-- Observer de animaciones -->
+  <script>
+    const io=new IntersectionObserver((es,ob)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ob.unobserve(e.target)}}),{threshold:.15});
+    document.querySelectorAll('.animate-on-scroll').forEach(el=>io.observe(el));
+  </script>
+</body>
 </html>

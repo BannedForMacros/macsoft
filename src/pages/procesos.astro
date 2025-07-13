@@ -1,0 +1,561 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Nuestros Procesos | MacSoft"
+  description="Conoce en detalle cada fase de nuestro método: desde el descubrimiento hasta el soporte, diseñado para maximizar tu resultado y satisfacción."
+>
+  <!-- Carga de Ionicons -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" defer></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js" defer></script>
+
+  <style is:global>
+    /* ───────── Animation Utilities ───────── */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .animate-on-scroll.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ───────── Nuevas Animaciones ───────── */
+    .animate-slide-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .animate-slide-left.in {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .animate-slide-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .animate-slide-right.in {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .animate-scale-up {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .animate-scale-up.in {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .animate-rotate-in {
+      opacity: 0;
+      transform: rotate(-10deg) scale(0.9);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .animate-rotate-in.in {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+
+    /* ───────── Section Styles ───────── */
+    .process-section { 
+      padding: 6rem 2rem; 
+      background: var(--neutral-50);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Partículas de fondo animadas */
+    .process-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 20% 20%, rgba(6,182,212,0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(6,182,212,0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 40% 60%, rgba(6,182,212,0.05) 0%, transparent 50%);
+      animation: floatingBubbles 20s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .process-header { 
+      text-align: center; 
+      max-width: 800px; 
+      margin: 0 auto 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .process-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      animation: popIn 0.6s ease forwards;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+    
+    .process-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(45deg, var(--accent), var(--accent-light));
+      border-radius: 2px;
+      animation: lineGrow 1s ease-out 0.5s forwards;
+      transform-origin: center;
+      scale: 0;
+    }
+    
+    .process-desc {
+      font-size: 1.125rem;
+      color: var(--neutral-700);
+      line-height: 1.6;
+      animation: textReveal 1s ease-out 0.3s forwards;
+      opacity: 0;
+    }
+
+    /* ───────── Timeline ───────── */
+    .timeline { 
+      position: relative; 
+      max-width: 1000px; 
+      margin: 0 auto; 
+      padding: 2rem 0;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      width: 4px; height: 100%;
+      background: linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-light) 100%);
+      transform: translateX(-50%);
+      animation: timelineGrow 2s ease-out forwards;
+      transform-origin: top;
+      scale: 1 0;
+    }
+    
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 2rem 2rem 2rem 4rem;
+      box-sizing: border-box;
+    }
+    
+    .timeline-item:nth-child(even) {
+      left: 50%;
+      padding: 2rem 4rem 2rem 2rem;
+    }
+    
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      top: 2.5rem;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 4px solid white;
+      box-shadow: 0 0 0 4px var(--accent-light);
+      left: -10px;
+      transform: translateX(-50%);
+      animation: pulse-marker 2s ease-in-out infinite;
+    }
+    
+    .timeline-item:nth-child(even)::before {
+      left: auto; right: -10px;
+      transform: translateX(50%);
+    }
+
+    .timeline-icon {
+      font-size: 1.75rem;
+      background: linear-gradient(45deg, var(--accent), var(--accent-light));
+      color: white;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      animation: bounce 1.2s infinite alternate, iconGlow 3s ease-in-out infinite;
+      box-shadow: 0 5px 20px rgba(6,182,212,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .timeline-icon:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 10px 30px rgba(6,182,212,0.5);
+    }
+    
+    .timeline-content {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(6,182,212,0.03), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+    
+    .timeline-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .timeline-content:hover::before {
+      transform: translateX(100%);
+    }
+    
+    .timeline-content h4 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      position: relative;
+      animation: titleSlide 0.8s ease-out forwards;
+    }
+    
+    .timeline-content p {
+      margin: 0 0 1rem;
+      color: var(--neutral-700);
+      line-height: 1.5;
+      animation: textFade 1s ease-out 0.2s forwards;
+      opacity: 0;
+    }
+    
+    .timeline-content ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--neutral-600);
+    }
+    
+    .timeline-content ul li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      animation: listItemSlide 0.6s ease-out forwards;
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    
+    .timeline-content ul li:nth-child(1) { animation-delay: 0.3s; }
+    .timeline-content ul li:nth-child(2) { animation-delay: 0.4s; }
+    .timeline-content ul li:nth-child(3) { animation-delay: 0.5s; }
+    
+    .timeline-content ul li::before {
+      content: '✔';
+      position: absolute;
+      left: -1.2rem;
+      color: var(--success);
+      animation: checkmark 0.6s ease-out forwards;
+      transform: scale(0);
+    }
+
+    /* ───────── CTA ───────── */
+    .process-cta {
+      text-align: center;
+      margin-top: 4rem;
+      animation: fadeIn 1s ease forwards;
+      position: relative;
+    }
+    
+    .process-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(45deg, var(--accent), var(--accent-light));
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(6,182,212,0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      animation: ctaPulse 2s ease-in-out infinite;
+    }
+    
+    .process-cta a::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .process-cta a:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(6,182,212,0.6);
+    }
+    
+    .process-cta a:hover::before {
+      left: 100%;
+    }
+    
+    .process-cta a ion-icon {
+      animation: rocketShake 1s ease-in-out infinite;
+    }
+
+    /* ───────── Keyframes ───────── */
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to   { opacity: 1; transform: scale(1);   }
+    }
+    
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-10px); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    
+    @keyframes floatingBubbles {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-30px) rotate(120deg); }
+      66% { transform: translateY(-15px) rotate(240deg); }
+    }
+    
+    @keyframes lineGrow {
+      from { scale: 0; }
+      to   { scale: 1; }
+    }
+    
+    @keyframes textReveal {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes timelineGrow {
+      from { scale: 1 0; }
+      to   { scale: 1 1; }
+    }
+    
+    @keyframes pulse-marker {
+      0%, 100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 0 4px var(--accent-light); }
+      50% { transform: translateX(-50%) scale(1.1); box-shadow: 0 0 0 8px var(--accent-light); }
+    }
+    
+    @keyframes iconGlow {
+      0%, 100% { box-shadow: 0 5px 20px rgba(6,182,212,0.3); }
+      50% { box-shadow: 0 5px 30px rgba(6,182,212,0.6); }
+    }
+    
+    @keyframes titleSlide {
+      from { opacity: 0; transform: translateX(-30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes textFade {
+      from { opacity: 0; transform: translateY(15px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes listItemSlide {
+      from { opacity: 0; transform: translateX(-20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes checkmark {
+      from { transform: scale(0) rotate(-45deg); }
+      to   { transform: scale(1) rotate(0deg); }
+    }
+    
+    @keyframes ctaPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    
+    @keyframes rocketShake {
+      0%, 100% { transform: rotate(0deg) translateY(0px); }
+      25% { transform: rotate(-5deg) translateY(-2px); }
+      75% { transform: rotate(5deg) translateY(-1px); }
+    }
+
+    /* ───────── Responsive Animations ───────── */
+    @media (max-width: 768px) {
+      .timeline-item:nth-child(even) {
+        left: 0;
+        padding: 2rem 2rem 2rem 4rem;
+      }
+      
+      .timeline-item:nth-child(even)::before {
+        left: -10px;
+        right: auto;
+        transform: translateX(-50%);
+      }
+      
+      .timeline::before {
+        left: 30px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 80px;
+      }
+    }
+  </style>
+
+  <section class="process-section">
+    <div class="process-header animate-scale-up">
+      <h2 class="process-title">Nuestro Proceso de Trabajo</h2>
+      <p class="process-desc">
+        Hemos afinado cada fase para que tu proyecto avance con seguridad, velocidad  
+        y un retorno de inversión claro. A continuación, te mostramos paso a paso cómo lo hacemos:
+      </p>
+    </div>
+
+    <div class="timeline">
+      <!-- Paso 1 -->
+      <div class="timeline-item animate-slide-right">
+        <div class="timeline-icon"><ion-icon name="search-outline"></ion-icon></div>
+        <div class="timeline-content">
+          <h4>1. Descubrimiento & Diagnóstico</h4>
+          <p>Inmersión profunda en tu negocio para entender necesidades reales:</p>
+          <ul>
+            <li>Entrevistas con stakeholders clave</li>
+            <li>Análisis de la competencia y público objetivo</li>
+            <li>Workshop de expectativas y KPIs</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Paso 2 -->
+      <div class="timeline-item animate-slide-left">
+        <div class="timeline-icon"><ion-icon name="calendar-outline"></ion-icon></div>
+        <div class="timeline-content">
+          <h4>2. Planificación Estratégica</h4>
+          <p>Definimos roadmap y recursos óptimos:</p>
+          <ul>
+            <li>Alcance y requerimientos</li>
+            <li>Roadmap de entregables y sprints</li>
+            <li>Asignación de equipo y herramientas</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Paso 3 -->
+      <div class="timeline-item animate-slide-right">
+        <div class="timeline-icon"><ion-icon name="color-palette-outline"></ion-icon></div>
+        <div class="timeline-content">
+          <h4>3. Diseño UX/UI de Alto Impacto</h4>
+          <p>Diseños centrados en el usuario:</p>
+          <ul>
+            <li>Wireframes interactivos</li>
+            <li>Prototipos de alta fidelidad</li>
+            <li>Tests de usabilidad</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Paso 4 -->
+      <div class="timeline-item animate-slide-left">
+        <div class="timeline-icon"><ion-icon name="code-slash-outline"></ion-icon></div>
+        <div class="timeline-content">
+          <h4>4. Desarrollo Ágil y Seguro</h4>
+          <p>Construcción basada en buenas prácticas:</p>
+          <ul>
+            <li>Arquitectura escalable</li>
+            <li>Clean code y code reviews</li>
+            <li>Integración continua (CI/CD)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Paso 5 -->
+      <div class="timeline-item animate-slide-right">
+        <div class="timeline-icon"><ion-icon name="bug-outline"></ion-icon></div>
+        <div class="timeline-content">
+          <h4>5. Pruebas Premium & QA</h4>
+          <p>Calidad garantizada en cada entrega:</p>
+          <ul>
+            <li>Tests unitarios e integración</li>
+            <li>Pruebas de carga y seguridad</li>
+            <li>Feedback continuo y correcciones</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Paso 6 -->
+      <div class="timeline-item animate-slide-left">
+        <div class="timeline-icon"><ion-icon name="rocket-outline"></ion-icon></div>
+        <div class="timeline-content">
+          <h4>6. Lanzamiento & Monitorización</h4>
+          <p>Publicamos con total control:</p>
+          <ul>
+            <li>Despliegue en producción</li>
+            <li>Monitorización 24/7</li>
+            <li>Backups automáticos y rollback</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Paso 7 -->
+      <div class="timeline-item animate-slide-right">
+        <div class="timeline-icon"><ion-icon name="construct-outline"></ion-icon></div>
+        <div class="timeline-content">
+          <h4>7. Mantenimiento & Soporte Continuo</h4>
+          <p>Tu sistema siempre actualizado:</p>
+          <ul>
+            <li>Actualizaciones y mejoras</li>
+            <li>Optimización de rendimiento</li>
+            <li>Asistencia 24/7 con SLA</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-cta animate-rotate-in">
+      <a href="/contacto">
+        <ion-icon name="rocket-outline"></ion-icon>
+        ¡Listo para despegar tu proyecto? Contáctame ahora
+      </a>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+      
+      // Observar todos los elementos con clases de animación
+      document.querySelectorAll('.animate-on-scroll, .animate-slide-left, .animate-slide-right, .animate-scale-up, .animate-rotate-in').forEach(el => io.observe(el));
+    });
+  </script>
+</Layout>
