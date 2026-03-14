@@ -2,9 +2,9 @@
 export const COMPANY = {
   name:         'MacSoft',
   tagline:      'Software a tu medida.',
-  phone:        '936651099',
+  phone:        '933798089',
   phoneDisplay: '936 651 099',
-  whatsapp:     'https://wa.me/51936651099',
+  whatsapp:     'https://wa.me/51933798089',
   email:        'contacto@macsoft.pe',
   location:     'Chiclayo, Perú',
   legalName:    'MacSoft E.I.R.L.',
@@ -17,7 +17,7 @@ export const NAV_LINKS = [
   { label: 'Proceso',   href: '/proceso' },
   { label: 'Sectores',  href: '/sectores' },
   { label: 'Clientes',  href: '/clientes' },
-  { label: 'Contacto',  href: 'https://wa.me/51936651099', external: true },
+  { label: 'Contacto',  href: 'https://wa.me/51933798089', external: true },
 ]
 
 // ── Hero (landing) ─────────────────────────────────────────────────────────
@@ -29,7 +29,7 @@ export const HERO = {
   cta_secondary: 'Ver qué hacemos',
 }
 
-// ── Products (GestVenin & TallerHub) ──────────────────────────────────────
+// ── Products ───────────────────────────────────────────────────────────────
 export const PRODUCTS = [
   {
     id:          'gestvenin',
@@ -51,7 +51,7 @@ export const PRODUCTS = [
     id:          'tallerhub',
     name:        'TallerHub',
     tagline:     'Sistema de gestión para talleres técnicos',
-    url:         'https://tallerhub.gestvenin.com',
+    url:         'https://tallerhub.macsoftperu.com',
     cta:         'Ver TallerHub',
     sector:      'Talleres Técnicos',
     description: 'Plataforma integral para talleres mecánicos, electrónicos y de servicios técnicos. Gestiona órdenes de trabajo, técnicos, repuestos y clientes desde un solo lugar.',
@@ -61,6 +61,38 @@ export const PRODUCTS = [
       { iconName: 'Package',   label: 'Inventario de repuestos' },
       { iconName: 'Bell',      label: 'Notificaciones al cliente por WhatsApp' },
       { iconName: 'FileText',  label: 'Historial de servicios por vehículo/equipo' },
+    ],
+  },
+  {
+    id:          'facturamac',
+    name:        'FacturaMac',
+    tagline:     'Envío de comprobantes electrónicos SUNAT',
+    url:         'https://facturamac.macsoftperu.com',
+    cta:         'Ver FacturaMac',
+    sector:      'Facturación Electrónica',
+    description: 'Plataforma para emisión y envío automático de facturas y boletas electrónicas validadas por SUNAT. Integrable con cualquier sistema existente vía API.',
+    features: [
+      { iconName: 'FileCheck', label: 'Emisión de facturas y boletas electrónicas' },
+      { iconName: 'Send',      label: 'Envío automático al cliente por correo y WhatsApp' },
+      { iconName: 'ShieldCheck', label: 'Validación en tiempo real con SUNAT' },
+      { iconName: 'FileText',  label: 'Notas de crédito y débito' },
+      { iconName: 'BarChart2', label: 'Reportes de comprobantes emitidos' },
+    ],
+  },
+  {
+    id:          'ventorypos',
+    name:        'VentoryPOS',
+    tagline:     'Punto de venta para minimarkets y retail',
+    url:         'https://ventorypos.macsoft.com',
+    cta:         'Ver VentoryPOS',
+    sector:      'Comercio Retail',
+    description: 'Sistema de punto de venta diseñado para minimarkets, bodegas y negocios de retail. Ventas rápidas, control de stock, múltiples medios de pago y reportes al instante.',
+    features: [
+      { iconName: 'ShoppingCart', label: 'Punto de venta rápido y táctil' },
+      { iconName: 'Package',      label: 'Control de stock en tiempo real' },
+      { iconName: 'CreditCard',   label: 'Efectivo, Yape, Plin y tarjeta' },
+      { iconName: 'Users',        label: 'Gestión de clientes y fidelización' },
+      { iconName: 'BarChart2',    label: 'Reportes de ventas diarios y mensuales' },
     ],
   },
 ]

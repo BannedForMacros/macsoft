@@ -2,6 +2,7 @@ import { Check, ExternalLink } from 'lucide-react'
 import {
   UtensilsCrossed, ChefHat, Package, Receipt, BarChart2,
   Wrench, Users, Bell, FileText,
+  FileCheck, Send, ShieldCheck, CreditCard, ShoppingCart,
 } from 'lucide-react'
 import { PRODUCTS } from '../../constants/content'
 import ScrollReveal from '../ui/ScrollReveal'
@@ -10,11 +11,14 @@ import SectionTitle from '../ui/SectionTitle'
 const ICON_MAP = {
   UtensilsCrossed, ChefHat, Package, Receipt, BarChart2,
   Wrench, Users, Bell, FileText,
+  FileCheck, Send, ShieldCheck, CreditCard, ShoppingCart,
 }
 
 const PRODUCT_COLORS = {
   gestvenin:  { accent: '#f97316', light: 'rgba(249,115,22,0.08)', border: 'rgba(249,115,22,0.25)' },
   tallerhub:  { accent: 'var(--blue)', light: 'rgba(27,74,158,0.07)', border: 'rgba(27,74,158,0.2)' },
+  facturamac: { accent: '#059669', light: 'rgba(5,150,105,0.07)', border: 'rgba(5,150,105,0.25)' },
+  ventorypos: { accent: '#7c3aed', light: 'rgba(124,58,237,0.07)', border: 'rgba(124,58,237,0.25)' },
 }
 
 export default function FeaturedProducts() {
