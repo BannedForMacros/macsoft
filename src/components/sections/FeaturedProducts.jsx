@@ -17,8 +17,8 @@ const ICON_MAP = {
 const PRODUCT_COLORS = {
   gestvenin:  { accent: '#f97316', light: 'rgba(249,115,22,0.08)', border: 'rgba(249,115,22,0.25)' },
   tallerhub:  { accent: 'var(--blue)', light: 'rgba(27,74,158,0.07)', border: 'rgba(27,74,158,0.2)' },
-  facturamac: { accent: '#059669', light: 'rgba(5,150,105,0.07)', border: 'rgba(5,150,105,0.25)' },
-  ventorypos: { accent: '#7c3aed', light: 'rgba(124,58,237,0.07)', border: 'rgba(124,58,237,0.25)' },
+  facturamac: { accent: '#0052a5', light: 'rgba(0,82,165,0.07)', border: 'rgba(0,82,165,0.25)' },
+  ventorypos: { accent: '#16a34a', light: 'rgba(22,163,74,0.07)', border: 'rgba(22,163,74,0.25)' },
 }
 
 export default function FeaturedProducts() {
@@ -33,9 +33,9 @@ export default function FeaturedProducts() {
           />
         </ScrollReveal>
 
-        <div style={{
+        <div className="products-grid" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gridTemplateColumns: 'repeat(2, 1fr)',
           gap: '28px',
         }}>
           {PRODUCTS.map((product, i) => {
@@ -128,6 +128,11 @@ export default function FeaturedProducts() {
           })}
         </div>
       </div>
+      <style>{`
+        @media (max-width: 640px) {
+          .products-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   )
 }
