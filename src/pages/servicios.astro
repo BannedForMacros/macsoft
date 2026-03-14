@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navbar from '../components/layout/Navbar'
+import Footer from '../components/layout/Footer'
+import PageHero from '../components/sections/PageHero'
+import ServiciosPage from '../components/sections/ServiciosPage'
+---
+
+<Layout
+  title="Servicios — MacSoft | GestVenin, TallerHub y desarrollo a medida"
+  description="GestVenin para restaurantes, TallerHub para talleres, y desarrollo 100% personalizado. Sistemas de gestión, plataformas web, apps móviles, integraciones y automatización."
+>
+  <Navbar activePath="/servicios" client:load />
+  <main style="padding-top: 68px;">
+    <PageHero
+      eyebrow="Lo que construimos"
+      title="Nuestros Servicios"
+      subtitle="Productos propios listos para implementar y desarrollo a medida para lo que el catálogo no cubre."
+      client:load
+    />
+    <ServiciosPage client:visible />
+  </main>
+  <Footer client:load />
+</Layout>

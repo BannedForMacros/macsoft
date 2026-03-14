@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navbar from '../components/layout/Navbar'
+import Footer from '../components/layout/Footer'
+import PageHero from '../components/sections/PageHero'
+import SectoresPage from '../components/sections/SectoresPage'
+---
+
+<Layout
+  title="Sectores — MacSoft | Software para cualquier industria"
+  description="Restaurantes, salud, legal, educación, logística, retail, cooperativas, construcción y más. MacSoft entiende tu industria antes de escribir código."
+>
+  <Navbar activePath="/sectores" client:load />
+  <main style="padding-top: 68px;">
+    <PageHero
+      eyebrow="Industrias"
+      title="Sectores que atendemos"
+      subtitle="Si tu negocio tiene un proceso, nosotros lo digitalizamos. Sin límite de sector."
+      client:load
+    />
+    <SectoresPage client:visible />
+  </main>
+  <Footer client:load />
+</Layout>

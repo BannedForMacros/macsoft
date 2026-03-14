@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" width="480" height="160">
+  <!-- Isotipo: círculo blanco con M navy -->
+  <circle cx="80" cy="80" r="72" fill="#FFFFFF"/>
+  <polygon
+    points="
+      44,118
+      44,42
+      62,42
+      80,82
+      98,42
+      116,42
+      116,118
+      100,118
+      100,66
+      86,92
+      74,92
+      60,66
+      60,118
+    "
+    fill="#0F2D5C"
+  />
+  <!-- Línea acento -->
+  <rect x="54" y="124" width="52" height="4" rx="2" fill="#60A5FA"/>
+
+  <!-- Wordmark blanco -->
+  <text
+    x="168" y="72"
+    font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-size="42" font-weight="700"
+    letter-spacing="4"
+    fill="#FFFFFF">MACSOFT</text>
+  <text
+    x="170" y="100"
+    font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-size="13" font-weight="400"
+    letter-spacing="5"
+    fill="#60A5FA">SOFTWARE SOLUTIONS</text>
+  <!-- Línea acento bajo wordmark -->
+  <rect x="170" y="110" width="272" height="3" rx="1.5" fill="#60A5FA" opacity="0.5"/>
+</svg>

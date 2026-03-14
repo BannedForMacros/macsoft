@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navbar from '../components/layout/Navbar'
+import Footer from '../components/layout/Footer'
+import PageHero from '../components/sections/PageHero'
+import ProcesoPage from '../components/sections/ProcesoPage'
+---
+
+<Layout
+  title="Proceso — MacSoft | Cómo trabajamos, transparencia total"
+  description="Cuatro etapas claras: escucha y diagnóstico, diseño y arquitectura, desarrollo iterativo, lanzamiento y soporte. Sin intermediarios, sin sorpresas."
+>
+  <Navbar activePath="/proceso" client:load />
+  <main style="padding-top: 68px;">
+    <PageHero
+      eyebrow="Nuestra metodología"
+      title="Cómo trabajamos"
+      subtitle="Transparencia total desde el primer día. Quien te atiende es quien construye tu software."
+      client:load
+    />
+    <ProcesoPage client:visible />
+  </main>
+  <Footer client:load />
+</Layout>

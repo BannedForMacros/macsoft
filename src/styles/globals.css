@@ -1,0 +1,314 @@
+/* === MACSOFT GLOBAL STYLES === */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --navy:    #0F2D5C;
+  --blue:    #1B4A9E;
+  --accent:  #60A5FA;
+  --white:   #FFFFFF;
+  --dark:    #1E293B;
+  --light:   #F1F5F9;
+  --mid:     #E2E8F0;
+  --navy-10: rgba(15, 45, 92, 0.08);
+
+  --shadow-card: 0 2px 12px rgba(15, 45, 92, 0.07);
+  --shadow-nav:  0 2px 16px rgba(15, 45, 92, 0.14);
+  --radius:      12px;
+  --radius-sm:   8px;
+  --radius-pill: 9999px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--light);
+  color: var(--dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--navy);
+}
+
+/* ── Scroll Reveal ── */
+.reveal-wrapper {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity  0.6s ease-out var(--delay, 0ms),
+    transform 0.6s ease-out var(--delay, 0ms);
+}
+.reveal-wrapper.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-wrapper { opacity: 1; transform: none; transition: none; }
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--navy);
+}
+.btn-primary:hover {
+  background: #93c5fd;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(96, 165, 250, 0.4);
+}
+.btn-secondary {
+  background: var(--blue);
+  color: var(--white);
+}
+.btn-secondary:hover {
+  background: var(--navy);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 74, 158, 0.35);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid var(--white);
+}
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+.btn-outline-navy {
+  background: transparent;
+  color: var(--navy);
+  border: 2px solid var(--navy);
+}
+.btn-outline-navy:hover {
+  background: var(--navy-10);
+  transform: translateY(-2px);
+}
+.btn-white-navy {
+  background: var(--white);
+  color: var(--navy);
+}
+.btn-white-navy:hover {
+  background: #f0f9ff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* ── Section Title ── */
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(96, 165, 250, 0.12);
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 16px;
+}
+.section-heading {
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.section-heading-white { color: var(--white); }
+.section-underline {
+  width: 56px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 9999px;
+  margin: 0 auto 0;
+}
+.section-underline-left { margin: 0; }
+.section-subtext {
+  font-size: 1.05rem;
+  color: var(--dark);
+  opacity: 0.75;
+  max-width: 580px;
+  margin: 20px auto 0;
+  line-height: 1.7;
+}
+.section-subtext-white { color: rgba(255,255,255,0.8); }
+
+/* ── Cards ── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--mid);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(15, 45, 92, 0.12);
+}
+
+/* ── Layout helpers ── */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.section-pad { padding: 96px 0; }
+
+/* ── Hero animation line ── */
+@keyframes lineGrow {
+  from { width: 0; }
+  to   { width: 80px; }
+}
+.hero-line {
+  height: 4px;
+  width: 0;
+  background: var(--accent);
+  border-radius: 9999px;
+  animation: lineGrow 1.2s ease-out 0.4s forwards;
+  margin: 0 auto 32px;
+}
+
+/* ── Bounce animation ── */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(8px); }
+}
+.bounce { animation: bounce 2s ease-in-out infinite; }
+
+/* ── Sector badges ── */
+.sector-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 18px;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: var(--radius-pill);
+  font-size: 0.88rem;
+  font-weight: 500;
+  border: 1.5px solid transparent;
+  transition: all 0.2s ease;
+  cursor: default;
+}
+.sector-badge:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+  transform: translateY(-2px);
+}
+
+/* ── Timeline connector ── */
+.timeline-connector {
+  flex: 1;
+  border-top: 2px dashed var(--mid);
+  margin: 0 12px;
+  margin-top: -40px;
+}
+
+/* ── Navbar ── */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--navy);
+  transition: box-shadow 0.3s ease;
+}
+.navbar.scrolled { box-shadow: var(--shadow-nav); }
+.nav-link {
+  color: rgba(255,255,255,0.75);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 6px 0;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.2s ease;
+}
+.nav-link:hover { color: var(--white); }
+.nav-link:hover::after { width: 100%; }
+
+/* ── Mobile drawer ── */
+.mobile-drawer {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.35s ease;
+  background: #0a1f40;
+}
+.mobile-drawer.open { max-height: 400px; }
+.mobile-nav-link {
+  display: block;
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+  padding: 14px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.2s, color 0.2s;
+}
+.mobile-nav-link:hover { background: rgba(96,165,250,0.1); color: var(--white); }
+
+/* ── Service card icon ── */
+.service-icon-wrap {
+  width: 56px; height: 56px;
+  background: rgba(96, 165, 250, 0.1);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  margin-bottom: 20px;
+  transition: background 0.25s;
+}
+.card:hover .service-icon-wrap {
+  background: rgba(96, 165, 250, 0.2);
+}
+
+/* ── Why card (navy bg) ── */
+.why-card {
+  background: rgba(255,255,255,0.07);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--accent);
+  padding: 32px;
+  transition: background 0.25s;
+}
+.why-card:hover { background: rgba(255,255,255,0.12); }
+
+/* ── Step number ── */
+.step-number {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+/* ── Footer ── */
+.footer-link {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+.footer-link:hover { color: var(--accent); }

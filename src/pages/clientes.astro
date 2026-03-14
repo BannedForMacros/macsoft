@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navbar from '../components/layout/Navbar'
+import Footer from '../components/layout/Footer'
+import PageHero from '../components/sections/PageHero'
+import ClientesPage from '../components/sections/ClientesPage'
+---
+
+<Layout
+  title="Clientes — MacSoft | Empresas que confiaron en nosotros"
+  description="Pollería Pollo Loco, Somavap Group y Centro de Arbitraje Galilea son algunos de los clientes que confiaron en MacSoft para digitalizar sus procesos."
+>
+  <Navbar activePath="/clientes" client:load />
+  <main style="padding-top: 68px;">
+    <PageHero
+      eyebrow="Casos reales"
+      title="Clientes"
+      subtitle="Empresas que confiaron en MacSoft para transformar sus procesos con software hecho a su medida."
+      client:load
+    />
+    <ClientesPage client:visible />
+  </main>
+  <Footer client:load />
+</Layout>

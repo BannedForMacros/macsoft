@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navbar from '../components/layout/Navbar'
+import Footer from '../components/layout/Footer'
+import PageHero from '../components/sections/PageHero'
+import WhyMacSoft from '../components/sections/WhyMacSoft'
+import FinalCTA from '../components/sections/FinalCTA'
+---
+
+<Layout
+  title="Por qué MacSoft — Software personalizado, comunicación directa"
+  description="100% personalizado, comunicación directa con quien construye tu software, arquitectura escalable desde el día 1. Descubre por qué elegirnos."
+>
+  <Navbar activePath="/porque" client:load />
+  <main style="padding-top: 68px;">
+    <PageHero
+      eyebrow="Nuestra diferencia"
+      title="¿Por qué MacSoft?"
+      subtitle="Tres razones concretas por las que nuestros clientes nos eligen sobre cualquier otra opción."
+      client:load
+    />
+    <WhyMacSoft client:visible />
+    <FinalCTA client:visible />
+  </main>
+  <Footer client:load />
+</Layout>
