@@ -4,21 +4,122 @@ import '../styles/globals.css'
 interface Props {
   title?: string
   description?: string
+  ogImage?: string
+  canonicalPath?: string
 }
+
 const {
   title = 'MacSoft — Software a tu medida | Chiclayo, Perú',
-  description = 'MacSoft construye software 100% personalizado para tu negocio: sistemas de gestión, plataformas web, apps móviles e integraciones. Chiclayo, Perú.',
+  description = 'MacSoft construye software 100% personalizado para tu negocio en Chiclayo, Perú. Sistemas de gestión, plataformas web, apps móviles, integraciones y automatización de procesos.',
+  ogImage = '/og-image.jpg',
+  canonicalPath = '',
 } = Astro.props
+
+const siteUrl  = 'https://macsoft.pe'
+const canonical = `${siteUrl}${canonicalPath}`
+
+// JSON-LD: LocalBusiness — le dice a Google exactamente quiénes somos y dónde estamos
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type':    'LocalBusiness',
+  '@id':      siteUrl,
+  name:       'MacSoft',
+  legalName:  'MacSoft E.I.R.L.',
+  description,
+  url:        siteUrl,
+  telephone:  '+51936651099',
+  email:      'contacto@macsoft.pe',
+  logo:       `${siteUrl}/macsoft-logotipo.svg`,
+  image:      `${siteUrl}${ogImage}`,
+  priceRange: '$$',
+  currenciesAccepted: 'PEN',
+  paymentAccepted:    'Cash, Invoice, Yape, Plin',
+  address: {
+    '@type':           'PostalAddress',
+    addressLocality:   'Chiclayo',
+    addressRegion:     'Lambayeque',
+    addressCountry:    'PE',
+    postalCode:        '14001',
+  },
+  geo: {
+    '@type':     'GeoCoordinates',
+    latitude:    '-6.7714',
+    longitude:  '-79.8409',
+  },
+  areaServed: [
+    { '@type': 'City',    name: 'Chiclayo' },
+    { '@type': 'State',   name: 'Lambayeque' },
+    { '@type': 'Country', name: 'Perú' },
+  ],
+  sameAs: [],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name:    'Servicios de desarrollo de software',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Sistemas de gestión empresarial (ERP, POS)' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Desarrollo de plataformas web a medida' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Aplicaciones móviles iOS y Android' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Integraciones con SUNAT y pasarelas de pago' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Automatización de procesos empresariales' } },
+    ],
+  },
+  openingHoursSpecification: [
+    {
+      '@type':     'OpeningHoursSpecification',
+      dayOfWeek:   ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+      opens:       '09:00',
+      closes:      '18:00',
+    },
+  ],
+}
 ---
 <!doctype html>
-<html lang="es">
+<html lang="es-PE">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#0F2D5C" />
-    <link rel="icon" type="image/svg+xml" href="/macsoft-isotipo.svg" />
+
+    <!-- ── SEO básico ── -->
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- ── Geolocalización ── -->
+    <meta name="geo.region"      content="PE-LAM" />
+    <meta name="geo.placename"   content="Chiclayo, Lambayeque, Perú" />
+    <meta name="geo.position"    content="-6.7714;-79.8409" />
+    <meta name="ICBM"            content="-6.7714, -79.8409" />
+
+    <!-- ── Keywords (ayuda secundaria) ── -->
+    <meta name="keywords" content="software a medida Chiclayo, desarrollo de software Chiclayo, sistema de gestión Perú, MacSoft, software personalizado Perú, ERP Chiclayo, apps móviles Perú, facturación electrónica SUNAT, GestVenin, TallerHub" />
+    <meta name="author"   content="MacSoft E.I.R.L." />
+
+    <!-- ── Open Graph (Facebook, WhatsApp, LinkedIn) ── -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonical} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={`${siteUrl}${ogImage}`} />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name"   content="MacSoft" />
+    <meta property="og:locale"      content="es_PE" />
+
+    <!-- ── Twitter / X Card ── -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={`${siteUrl}${ogImage}`} />
+
+    <!-- ── Favicon e iconos ── -->
+    <link rel="icon"             type="image/svg+xml" href="/macsoft-isotipo.svg" />
+    <link rel="apple-touch-icon" href="/macsoft-isotipo.svg" />
+    <meta name="theme-color"     content="#0F2D5C" />
+    <meta name="msapplication-TileColor" content="#0F2D5C" />
+
+    <!-- ── JSON-LD Structured Data ── -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
     <slot />

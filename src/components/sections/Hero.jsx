@@ -11,7 +11,8 @@ export default function Hero() {
     <section
       style={{
         position: 'relative',
-        minHeight: '100vh',
+        /* 100vh - 68px (altura navbar fija) = exactamente el área visible sin scroll */
+        minHeight: 'calc(100vh - 68px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -21,10 +22,12 @@ export default function Hero() {
         backgroundPosition: 'center',
       }}
     >
-      {/* Primary dark overlay — strong enough for legibility */}
-      <div style={{ position: 'absolute', inset: 0, background: 'rgba(10, 20, 45, 0.78)' }} />
-      {/* Subtle gradient from bottom so scroll indicator stays readable */}
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, rgba(10,20,45,0.55) 100%)' }} />
+      {/* Overlay semi-transparente — permite ver la imagen pero garantiza legibilidad del texto */}
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(10, 20, 45, 0.80)' }} />
+      {/* Gradiente adicional centrado en el área del texto para reforzar contraste local */}
+      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 70% 60% at 50% 45%, rgba(10,20,45,0.35) 0%, transparent 100%)' }} />
+      {/* Gradiente inferior para el indicador scroll */}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 65%, rgba(10,20,45,0.45) 100%)' }} />
 
       {/* Content */}
       <div
@@ -106,23 +109,30 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — siempre visible dentro del viewport */}
       <div
         className="bounce"
         style={{
           position: 'absolute',
-          bottom: '36px',
+          bottom: '28px',
           left: '50%',
           transform: 'translateX(-50%)',
-          color: 'rgba(255,255,255,0.6)',
+          color: 'rgba(255,255,255,0.85)',
           cursor: 'pointer',
           zIndex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '4px',
         }}
         onClick={scrollToServices}
         role="button"
         aria-label="Desplázate hacia abajo"
       >
-        <ChevronsDown size={32} strokeWidth={1.5} />
+        <span style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>
+          scroll
+        </span>
+        <ChevronsDown size={28} strokeWidth={2} />
       </div>
     </section>
   )
